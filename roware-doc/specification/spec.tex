@@ -1,0 +1,285 @@
+%------------------------------------------------------------------------------
+% Row@re . Spec
+%------------------------------------------------------------------------------
+\newcommand{\roware}{\textbf{ROW@RE}\ }
+
+\newcommand{\usecase}[5]{
+\begin{minipage}{\textwidth}
+\textbf{Vorbedingung}\\
+#1 \\
+\textbf{Beschreibung}\\
+#2 \\
+\textbf{Nachbedingung Erfolg}\\
+#3 \\
+\textbf{Nachbedingung Fehlschlag}\\
+#4 \\
+\textbf{Interaktionen}\\
+#5
+\end{minipage}
+}
+
+\documentclass[11pt, a4paper]{scrbook}
+\usepackage{ngerman}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx,color}
+\usepackage{eso-pic}
+\usepackage{ae}
+
+\definecolor{lightgray}{gray}{.75}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+
+  \AddToShipoutPicture{%
+    \AtTextCenter{%
+      \makebox(0,0)[c]{\resizebox{\textwidth}{!}{%
+        \rotatebox{45}{\textsf{\textbf{\color{lightgray}DRAFT}}}}} 
+    }
+  }
+
+
+\begin{titlepage}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+{\Huge
+\raggedright
+\roware \\
+\huge Integriertes EDV-System zur Abwicklung von Ruderegatten
+\rule{\textwidth}{0.75pt}
+\par
+}
+\begin{flushleft}
+\normalsize
+Version 0.1\\[2ex]
+\today \\
+Oliver Urschel\footnote{Aachen/Bad Kreuznach, \texttt{<urschcom@users.berlios.de>}}\\
+Tammo van Lessen\footnote{Stuttgart/Mainz, \texttt{<vanto@users.berlios.de>}}\\
+\end{flushleft}
+
+\vfill
+
+{\parindent=0cm
+\Huge Spezifikation
+}
+
+
+\setcounter{footnote}{0}
+\end{titlepage}
+
+\onecolumn
+{\parindent=0cm\thispagestyle{empty}
+\copyright{} Copyright 2003 Tammo van Lessen
+\bigskip
+
+Die Verteilung dieses Dokuments in elektronischer oder gedruckter
+Form ist gestattet, solange sein Inhalt einschlie"slich Autoren- und 
+Copyright-Angabe unver"andert bleibt und die Verteilung kostenlos
+erfolgt, abgesehen von einer Ge\-b"uhr f"ur den Datentr"ager, den
+Kopiervorgang usw.
+\bigskip
+
+Die in dieser Publikation erw"ahnten Software- und Hardware-Bezeichnungen sind
+in den meisten F"allen auch eingetragene Warenzeichen und unterliegen als
+solche den gesetzlichen Bestimmungen.
+\bigskip
+
+\vfill
+
+Dieses Dokument wurde mit \LaTeX{} gesetzt.
+}
+\clearpage
+\newpage
+
+
+\thispagestyle{empty}
+%\twocolumn
+%-------------------------------------------------------------------------
+\chapter{Einleitung}
+\section{Zielsetzung}
+In diesem Dokument sind die Anforderungen an das Projekt \roware
+detailliert spezifiziert. Das Produkt wird streng nach den hier aufgeführten 
+Anforderungen entwickelt. Der Entwicklungsprozess gilt als erfolgreich 
+abgeschlossen, wenn das Produkt allen hier aufgeführten Aspekten gerecht wird.
+Änderungen an diesem Dokument sind nach Abschluss der Spezifikationsphase nicht mehr ohne das Einverständnis des \roware-Teams möglich.
+
+\section{Produktziele}
+Bei \roware handelt es sich um ein Programmsystem, das alle Phasen einer 
+Regatta unterstützt. Dazu gehört im Vorfeld der Regatta die Erfassung der eingegangenen Meldungen, die Durchführung der Startverlosung, das Erstellen des Meldeergebnisses. Während der Regatta unterstützt es das Regattabüro, Waage und Kasse.
+Nach der Regatta können automatisch korrigierte Meldeergebnisse erstellt werden.
+
+\section{Produktumgebung}
+Das Programm soll auf beliebigen Plattformen lauffähig sein. Deshalb wird es als Webanwendung in PHP implementiert. Der Benutzer benötig nur einen modernen Browser mit JavaScript-Unterstützung.
+
+\section{Produktfunktionen}
+Das Produkt stellt dem Regattaveranstalter folgende Funktionen zur Verfügung
+
+\textbf{Ausschreibung}
+\begin{itemize}
+\item Ausschreibung erstellen
+\item Ausschreibung veröffentlichen (HTML, PDF, xregatta)
+\end{itemize}
+
+\textbf{Meldeschluss}
+\begin{itemize}
+\item Daten einlesen aus xregatta-format
+\item Daten eingeben (Papiermeldung)
+\item Daten überprüfen und korrigieren
+\item Rennen verlosen
+\item Rennzeiten festlegen
+\item Meldeergebnis veröffentlichen (HTML, PDF, xregatta)
+\end{itemize}
+
+\textbf{Regattabüro}
+\begin{itemize}
+\item Nachmeldung/Abmeldung/Ummeldung erfassen und damit verbundene Rennverschiebungen verarbeiten
+\item Jugendlizenzen kontrollieren/erfassen
+\item Schiedsrichtereinsatzplan erstellen, veröffentlichen
+\item Waage erfassen
+\item Kasse Buchungen, Quittung erstellen, Berichte erstellen
+\item Rennen verlegen
+\item Einsprüche erfassen
+\item Schiedsrichterbericht erstellen
+\item Urkunden drucken
+\item Ergebnisse veröffentlichen (HTML, PDF, xregatta)
+\end{itemize}
+
+\textbf{Start/Ziel}
+\begin{itemize}
+\item Startberechtigung kontrollieren (Übergewicht, Zusatzgewicht, unerlaubte Renngemeinschaften usw.)
+\item Ausschluss von Mannschaften erfassen (Geldstrafen???)
+\item Mannschaften zu Rennen einteilen
+\item Rennen starten
+\item Zwischenzeiten nehmen
+\item Unfälle erfassen (Kentern, Bootsschaden usw.)
+\item Einsprüche erfassen
+\item Zeit nehmen (Ziel)
+\item Zielfotos hochladen
+\end{itemize}
+
+\chapter{Anforderungen}
+Die Anforderungen werden in Form von Anwendungsfällen (Use-Cases) erklärt.
+Sie beschreiben die Funktionalität des zu erstellenden Systems.
+
+\section{Aktoren}
+\subsection{Benutzer}
+Vor der Anmeldung an das System sind haben alle Benutzer die gleiche Funktion und die gleichen Möglichkeiten. Nach der Anmeldung ergibt sich durch das Rechtemanagment eine neue Situation, die Benutzer werden in weitere Gruppen mit unterschiedlichen Rechten aufgeteilt.
+\begin{itemize}
+\item Benutzer im Regattabüro (\emph{ACT-Admin})
+\item Benutzer an der Wage (\emph{ACT-Waage})
+\item Benutzer am Start (\emph{ACT-Start})
+\item Benutzer im Ziel (\emph{ACT-Ziel})
+\item Benutzer an der Strecke (\emph{ACT-Zeit})
+\item Gast (\emph{ACT-Gast})
+\item TODO: weitere Benutzer?
+\end{itemize}
+
+\section{Use-Cases}
+Die hier beschriebenen Geschäftsprozesse beschreiben ausschließlich die Interaktion zwischen Benutzer und Maschine. Implementations- und Gestaltungsdetails sind hier falsch.
+
+\subsection{Am System anmelden}
+\usecase{Browser ist gestartet und zeigt auf http://ip-adresse/}
+	{Der Benutzer trägt seinen Namen und sein Passwort in Textfelder ein.
+	Danach bestätigt er 
+	mit \emph{Return} oder klickt auf \emph{OK}. Darauf hin wird das 
+	Passwort überprüft.}
+	{Der Benutzer ist nun angemeldet, es erscheint das Hauptfenster}
+	{Es wird die Fehlermeldung ``Falsches Kennwort'' angezeigt, das 
+	Anmeldefenster bleibt angezeigt.}
+	{Benutzer}
+
+\subsection {Ausschreibung erstellen}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Ausschreibung veröffentlichen (HTML, PDF, xregatta)}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Daten einlesen aus xregatta-format}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Daten eingeben (Papiermeldung)}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Daten überprüfen und korrigieren}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Rennen verlosen}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Rennzeiten festlegen}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Meldeergebnis veröffentlichen (HTML, PDF, xregatta)}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Nachmeldung/Abmeldung/Ummeldung erfassen und damit verbundene Rennverschiebungen verarbeiten}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Jugendlizenzen kontrollieren/erfassen}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Schiedsrichtereinsatzplan erstellen, veröffentlichen}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Waage erfassen}
+\usecase{}{TODO}{}{}{ACT-Waage, ACT-Admin}
+
+\subsection {Kasse Buchungen, Quittung erstellen, Berichte erstellen}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Rennen verlegen}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Einsprüche erfassen}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Schiedsrichterbericht erstellen}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Urkunden drucken}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Ergebnisse veröffentlichen (HTML, PDF, xregatta)}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Startberechtigung kontrollieren (Übergewicht, Zusatzgewicht, unerlaubte Renngemeinschaften usw.)}
+\usecase{}{TODO}{}{}{ACT-Start, ACT-Admin}
+
+\subsection {Ausschluss von Mannschaften erfassen (Geldstrafen???)}
+\usecase{}{TODO}{}{}{ACT-Start, ACT-Ziel}
+
+\subsection {Mannschaften zu Rennen einteilen}
+\usecase{}{TODO}{}{}{ACT-Start, ACT-Admin}
+
+\subsection {Rennen starten}
+\usecase{}{TODO}{}{}{ACT-Start, ACT-Admin}
+
+\subsection {Zwischenzeiten nehmen}
+\usecase{}{TODO}{}{}{ACT-Zeit, ACT-Admin}
+
+\subsection {Unfälle erfassen (Kentern, Bootsschaden usw.)}
+\usecase{}{TODO}{}{}{ACT-Zeit, ACT-Start, ACT-Ziel, ACT-Admin}
+
+\subsection {Einsprüche erfassen}
+\usecase{}{TODO}{}{}{ACT-Admin}
+
+\subsection {Zeit nehmen (Ziel)}
+\usecase{}{TODO}{}{}{ACT-Ziel, ACT-Admin}
+
+\subsection {Zielfotos hochladen}
+\usecase{}{TODO}{}{}{ACT-Ziel, ACT-Admin}
+
+
+\chapter{Graphische Benutzeroberfläche}
+TODO
+\section{Anmeldefenster}
+TODO
+\section{Hauptfenser}
+TODO
+\chapter{Daten}
+TODO Datenstruktur beschreiben
+%-------------------------------------------------------------------------
+\chapter{Offene Fragen}
+%\begin{itemize}
+%\item Über welchen Zeitraum werden die Daten gespeichert
+%\end{itemize}
+\end{document}
