@@ -42,8 +42,8 @@ public class Team {
 		athletes.add(ath);
 	}
 	
-	public Object[] getAthletes() {
-		return athletes.toArray();
+	public Athlete[] getAthletes() {
+		return (Athlete[])athletes.toArray(new Athlete[0]);
 	}
 
 	
