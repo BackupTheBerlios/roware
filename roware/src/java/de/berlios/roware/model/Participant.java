@@ -29,34 +29,12 @@ import java.util.GregorianCalendar;
  * Participant - Superclass for all Persons Participating in Competitions organzied with roware.
  * 
  * @author Tammo van Lessen
- * @version $Id: Participant.java,v 1.5 2003/07/23 16:53:09 jpraetorius Exp $
+ * @version $Id: Participant.java,v 1.6 2003/10/30 16:18:48 jpraetorius Exp $
  * 
  * TODO: Add  hashcode()!
  */
 public abstract class Participant extends AbstractPerson {
 
-	//Gender Constants
-	public static final int MALE = 1;
-	public static final int FEMALE = 2;
-	
-	//Age constants - same as in the BOAT Class
-	public static final int CHILDREN_11 = 1;
-	public static final int CHILDREN_12 = 2;
-	public static final int CHILDREN_13 = 3;
-	public static final int CHILDREN_14 = 4;
-	public static final int JUNIOR_B = 5;
-	public static final int JUNIOR_A = 6;
-	public static final int SENIOR_B = 7;
-	public static final int SENIOR_A = 8;
-	public static final int MASTERS_A = 9;
-	public static final int MASTERS_B = 10;
-	public static final int MASTERS_C = 11;
-	public static final int MASTERS_D = 12;
-	public static final int MASTERS_E = 13;
-	public static final int MASTERS_F = 14;
-	public static final int MASTERS_G = 15;
-	public static final int MASTERS_H = 16;
-	
 	private int gender = 0;
 	private long id = 0;
 	private Date birthday = null;
@@ -150,20 +128,20 @@ public abstract class Participant extends AbstractPerson {
 		int athleteYear = c.get(Calendar.YEAR);
 		int difference = thisYear - athleteYear;
 		switch(difference){
-			case 10: return CHILDREN_11; 
-			case 11: return CHILDREN_11; 
-			case 12: return CHILDREN_12; 
-			case 13: return CHILDREN_13; 
-			case 14: return CHILDREN_14; 
-			case 15: return JUNIOR_B; 
-			case 16: return JUNIOR_B; 
-			case 17: return JUNIOR_A; 
-			case 19: return JUNIOR_A; 
-			case 20: return SENIOR_B;
-			case 21: return SENIOR_B;
-			case 22: return SENIOR_B;
-			//TODO: In general this IS right, but what about masters ???
-			default: return SENIOR_A;
+			case 10: return Boat.CHILDREN_11; 
+			case 11: return Boat.CHILDREN_11; 
+			case 12: return Boat.CHILDREN_12; 
+			case 13: return Boat.CHILDREN_13; 
+			case 14: return Boat.CHILDREN_14; 
+			case 15: return Boat.JUNIOR_B; 
+			case 16: return Boat.JUNIOR_B; 
+			case 17: return Boat.JUNIOR_A; 
+			case 19: return Boat.JUNIOR_A; 
+			case 20: return Boat.SENIOR_B;
+			case 21: return Boat.SENIOR_B;
+			case 22: return Boat.SENIOR_B;
+			//TODO: This is not really right...
+			default: return Boat.SENIOR_A;
 		}		
 	}
 	

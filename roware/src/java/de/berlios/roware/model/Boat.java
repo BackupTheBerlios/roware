@@ -37,6 +37,8 @@ import de.berlios.roware.model.rule.RulesManager;
  */
 public class Boat implements Checkable {
 	
+	//Simple indetermined Value
+	public static final int UNKNOWN = -1;
 	//Boat Classes
 	public static final int SINGLE_SCULLS = 1;
 	public static final int DOUBLE_SCULLS = 2;
