@@ -49,15 +49,15 @@ public class RulesManager {
 		return singleton;
 	}
 	
-	public void registerRule(Class rule) throws Exception {
+	public void registerRule(String name, Class rule) throws Exception {
 		if (AbstractRule.class.isAssignableFrom(rule)) {
-			rules.put(rule.getName(), rule);
+			rules.put(name, rule);
 		} 
 		else throw new Exception("Class is not a Rule");
 	}
 	
-	public void deregisterRule(Class rule) {
-		rules.remove(rule.getName());
+	public void deregisterRule(String name) {
+		rules.remove(name);
 	}
 	
 	public AbstractRule getRuleByName(String name) throws RuleNotFoundException {
@@ -70,7 +70,7 @@ public class RulesManager {
 			} else {
 				try {
 					rule = (AbstractRule)ruleClass.newInstance();
-					rulePool.put(ruleClass.getName(), rule);
+					rulePool.put(name, rule);
 					return rule;
 				} catch (InstantiationException e) {
 					throw new RuleNotFoundException(name, e);

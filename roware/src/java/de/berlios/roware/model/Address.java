@@ -23,8 +23,8 @@ package de.berlios.roware.model;
 /**
  * Address
  * 
- * @author <a href="mailto:vanto@users.berlios.de">Tammo van Lessen</a>
- * @version $id$
+ * @author Tammo van Lessen
+ * @version $id: $
  */
 public class Address {
 

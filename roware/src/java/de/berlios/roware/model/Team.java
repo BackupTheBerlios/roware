@@ -25,8 +25,8 @@ import java.util.List;
 /**
  * Team
  * 
- * @author <a href="mailto:vanto@users.berlios.de">Tammo van Lessen</a>
- * @version $id:$
+ * @author Tammo van Lessen
+ * @version $id: $
  */
 public class Team {
 

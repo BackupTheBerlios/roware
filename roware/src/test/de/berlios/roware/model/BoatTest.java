@@ -177,8 +177,8 @@ public class BoatTest extends TestCase {
 		assertFalse(valid);
 		
 		try {
-			RulesManager.getInstance().registerRule(BoatRule.class);
-			RulesManager.getInstance().registerRule(LightweightRule.class);
+			RulesManager.getInstance().registerRule("BoatRule", BoatRule.class);
+			RulesManager.getInstance().registerRule("LightweightRule", LightweightRule.class);
 		} catch (Exception e1) {
 			fail("Rule registration failed");
 		}

@@ -165,9 +165,9 @@ public class Boat implements Checkable {
 	 */
 	public void validate() throws RuleViolationException {
 		try {
-			RulesManager.getInstance().check(this, "de.berlios.roware.model.rule.BoatRule");
+			RulesManager.getInstance().check(this, "BoatRule");
 			if (isLightweight()) {
-				RulesManager.getInstance().check(this, "de.berlios.roware.model.rule.LightweightRule");
+				RulesManager.getInstance().check(this, "LightweightRule");
 
 			}
 		} catch (RuleNotFoundException e) {

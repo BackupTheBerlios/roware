@@ -26,8 +26,8 @@ import de.berlios.roware.i18n.I18n;
 /**
  * Roware
  * 
- * @author <a href="mailto:vanto@users.berlios.de">Tammo van Lessen</a>
- * @version $id$
+ * @author Tammo van Lessen
+ * @version $id: $
  */
 public class Roware {
 
