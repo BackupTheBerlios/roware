@@ -53,22 +53,22 @@ public class BoatRule extends AbstractRule {
 		if (obj instanceof Boat) {
 			Boat boat = (Boat)obj;
 			if ((boat.getType() == Boat.SINGLE_SCULLS)
-				&& (boat.getAthletes().length) != 1) {
+				&& (boat.getTeam().getAthletes().length) != 1) {
 				msg = Roware.tr("In einem Einer muss genau eine Person sitzen");
 			} else if ((boat.getType() == Boat.DOUBLE_SCULLS)
-						&& (boat.getAthletes().length) != 2) {
+						&& (boat.getTeam().getAthletes().length) != 2) {
 				msg = Roware.tr("In einem Zweier müssen genau 2 Person sitzen");
 			} else if ((boat.getType() == Boat.QUADRUPPLE_SCULLS)
-						&& (boat.getAthletes().length) != 4) {
+						&& (boat.getTeam().getAthletes().length) != 4) {
 				msg = Roware.tr("In einem Vierer müssen genau 4 Person sitzen");
 			} else if ((boat.getType() == Boat.PAIRS)
-						&& (boat.getAthletes().length) != 2) {
+						&& (boat.getTeam().getAthletes().length) != 2) {
 				msg = Roware.tr("In einem Zweier müssen genau 2 Person sitzen");
 			} else if ((boat.getType() == Boat.FOURS)
-						&& (boat.getAthletes().length) != 4) {
+						&& (boat.getTeam().getAthletes().length) != 4) {
 				msg = Roware.tr("In einem Vierer müssen genau 4 Person sitzen");
 			} else if ((boat.getType() == Boat.EIGHTS)
-						&& (boat.getAthletes().length) != 8) {
+						&& (boat.getTeam().getAthletes().length) != 8) {
 				msg = Roware.tr("In einem Achter müssen genau 8 Person sitzen");
 			}
 			

@@ -20,8 +20,8 @@
  */
 package de.berlios.roware.model.rule;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * RulesManager
@@ -33,10 +33,13 @@ public class RulesManager {
 
 	private static RulesManager singleton = new RulesManager();
 
-	private Set rules = new HashSet();
+	private Map rules = new HashMap();
 	
 	/**
-	 * TODO RulesManager 
+	 * TODO RulesManager
+	 * 
+	 * TODO Implement Lazy Init for Rules
+	 * TODO Implement Ruleseach for Strings without packagenames 
 	 */
 	private RulesManager() {
 	}
@@ -46,11 +49,15 @@ public class RulesManager {
 	}
 	
 	public void registerRule(AbstractRule rule) {
-		rules.add(rule);
+		rules.put(rule.getClass().getName(), rule);
 	}
 	
 	public void deregisterRule(AbstractRule rule) {
-		rules.remove(rule);
+		rules.remove(rule.getClass().getName());
+	}
+	
+	public AbstractRule getRuleByName(String name) {
+		return (AbstractRule) rules.get(name);
 	}
 	
 	/**
@@ -60,11 +67,11 @@ public class RulesManager {
 	 * @param object
 	 * @return
 	 */
-	public void check(Checkable object) throws RuleViolationException {
+	public void checkAll(Checkable object) throws RuleViolationException {
 		if (rules.isEmpty()) {
 			return;
 		}
-		AbstractRule[] rls = (AbstractRule[])rules.toArray();
+		AbstractRule[] rls = (AbstractRule[])rules.values().toArray();
 		for (int i = 0; i < rls.length; i++) {
 			if (rls[i].canCheck(object)) {
 				rls[i].check(object);
@@ -72,5 +79,10 @@ public class RulesManager {
 		}
 		
 		return;
+	}
+	
+	public void check(Checkable object, String rule) throws RuleViolationException {
+		AbstractRule rl = (AbstractRule) rules.get(rule);
+		rl.check(object);
 	}
 }

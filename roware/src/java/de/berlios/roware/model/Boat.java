@@ -36,12 +36,15 @@ import de.berlios.roware.model.rule.RulesManager;
  */
 public class Boat implements Checkable {
 	
+	private boolean coxed;
+	private Team team;
 	public static final int SINGLE_SCULLS = 1;
 	public static final int DOUBLE_SCULLS = 2;
 	public static final int QUADRUPPLE_SCULLS = 3;
 	public static final int PAIRS = 4;
 	public static final int FOURS = 5;
 	public static final int EIGHTS = 6;	
+	public static final int OTHER = 0;
 	
 	// TODO Implement this!!
 	public static final int JUNIOR_B = 1;
@@ -63,32 +66,41 @@ public class Boat implements Checkable {
 	/**
 	 * TODO Boat 
 	 */
-	public Boat(int type) {
+	public Boat(int type, boolean coxed) {
 		this.type = type;
+		this.coxed = coxed;
 	}
 	
 	public int getType() {
 		return type;
 	}
 	
-	public void addAthlete(Athlete ath) {
-		athletes.add(ath);
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 	
-	public Athlete[] getAthletes() {
-		return (Athlete[])athletes.toArray();
+	public Team getTeam() {
+		return team;
+	}
+	
+	public boolean isVirtual() {
+		return (team == null);
+	}
+	
+	public void setCoxed(boolean coxed) {
+		this.coxed = coxed;
+	}
+	
+	public boolean isCoxed() {
+		return coxed;
 	}
 
-	public boolean isCoxed() {
-		return (cox != null);
-	}
-	
-	public void removeAthlete(Athlete ath) {
-		athletes.remove(ath);
-	}
-	
 	public void setCox(Athlete cox) {
 		this.cox = cox;
+	}
+	
+	public Athlete getCox() {
+		return cox;
 	}
 	
 	public void setLightweight(boolean lgw) {
@@ -103,7 +115,10 @@ public class Boat implements Checkable {
 	 * @see de.berlios.roware.model.rule.Checkable#isValid()
 	 */
 	public void validate() throws RuleViolationException {
-		RulesManager.getInstance().check(this);
+		RulesManager.getInstance().check(this, "de.berlios.roware.model.rule.BoatRule");
+		if (isLightweight()) {
+			RulesManager.getInstance().check(this, "de.berlios.roware.model.rule.LightweightRule");
+		}
 	}
 
 }
