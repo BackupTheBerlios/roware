@@ -20,7 +20,7 @@
  */
 package de.berlios.roware.model.rule;
 
-import de.berlios.roware.Roware;
+import de.berlios.roware.i18n.I18n;
 import de.berlios.roware.model.Boat;
 
 /**
@@ -54,22 +54,22 @@ public class BoatRule extends AbstractRule {
 			Boat boat = (Boat)obj;
 			if ((boat.getType() == Boat.SINGLE_SCULLS)
 				&& (boat.getTeam().getAthletes().length) != 1) {
-				msg = Roware.tr("In einem Einer muss genau eine Person sitzen");
+				msg = I18n.tr("In einem Einer muss genau eine Person sitzen");
 			} else if ((boat.getType() == Boat.DOUBLE_SCULLS)
 						&& (boat.getTeam().getAthletes().length) != 2) {
-				msg = Roware.tr("In einem Zweier müssen genau 2 Person sitzen");
+				msg = I18n.tr("In einem Zweier müssen genau 2 Person sitzen");
 			} else if ((boat.getType() == Boat.QUADRUPPLE_SCULLS)
 						&& (boat.getTeam().getAthletes().length) != 4) {
-				msg = Roware.tr("In einem Vierer müssen genau 4 Person sitzen");
+				msg = I18n.tr("In einem Vierer müssen genau 4 Person sitzen");
 			} else if ((boat.getType() == Boat.PAIRS)
 						&& (boat.getTeam().getAthletes().length) != 2) {
-				msg = Roware.tr("In einem Zweier müssen genau 2 Person sitzen");
+				msg = I18n.tr("In einem Zweier müssen genau 2 Person sitzen");
 			} else if ((boat.getType() == Boat.FOURS)
 						&& (boat.getTeam().getAthletes().length) != 4) {
-				msg = Roware.tr("In einem Vierer müssen genau 4 Person sitzen");
+				msg = I18n.tr("In einem Vierer müssen genau 4 Person sitzen");
 			} else if ((boat.getType() == Boat.EIGHTS)
 						&& (boat.getTeam().getAthletes().length) != 8) {
-				msg = Roware.tr("In einem Achter müssen genau 8 Person sitzen");
+				msg = I18n.tr("In einem Achter müssen genau 8 Person sitzen");
 			}
 			
 			if (msg != null) {

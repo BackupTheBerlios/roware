@@ -20,10 +20,8 @@
  */
 package de.berlios.roware;
 
-import java.text.MessageFormat;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import de.berlios.roware.i18n.I18n;
+
 
 /**
  * Roware
@@ -33,18 +31,6 @@ import java.util.ResourceBundle;
  */
 public class Roware {
 
-	/**
-	 * This list contains all languages the Roware has been
-	 * translated into. Add new languages here (see TRANSLATION file).
-	 */
-	public static final Locale[] LANGUAGES = {
-			/*Locale.ENGLISH,*/ Locale.GERMAN, 
-			};
-	
-	/**
-	 * Reference to the current localization bundle.
-	 */
-	private static ResourceBundle resources;
 
 	/**
 	 * 
@@ -52,138 +38,13 @@ public class Roware {
 	public Roware() {
 	}
 
-
+	public static void init() {
+		I18n.initLocale("de");
+	}
+	
 	public static void main(String[] args) {
-		System.out.println("-- roware ---------");
-		initLocale("de");	
+		init();
+		System.out.println(I18n.tr("starting roware")+"...");
 	}
 	
-	/**
-	 * Sets default locale and loads resources.
-	 */
-	public static void initLocale(String language)
-	{
-		for (int i = 0; i < LANGUAGES.length; i++) {
-			if (language.equals(LANGUAGES[i].getLanguage())) {
-				Locale.setDefault(LANGUAGES[i]);
-				break;
-			}
-		}
-
-		try {
-			resources = ResourceBundle.getBundle("de.berlios.roware.roware",
-												 Locale.getDefault());
-		}
-		catch (MissingResourceException e) {
-			System.err.println("resources/roware.properties not found");
-			System.err.println(e.getMessage());
-			System.exit(1);
-		}
-	}
-	
-	/**
-	 * Returns the currently used message bundle.
-	 */
-	public static final ResourceBundle getMessagesBundle()
-	{
-		return resources;
-	}
-
-	/**
-	 * Returns <code>text</code> translated into the currently selected
-	 * language. Every user-visible string in the program must be wrapped
-	 * into this function.  
-	 */
-	public static final String tr(String text)
-	{
-		try {
-			return getMessagesBundle().getString(text);
-		}
-		catch (MissingResourceException e) {
-			//System.err.println("missing translation key: \"" + text + "\"");
-			//e.printStackTrace(System.err);
-			return text;
-		}
-		catch (NullPointerException e) {
-			// the message bundle has not been loaded yet
-			return text;
-		}
-	}
-
-	/**
-	 * Returns <code>text</code> translated into the currently selected
-	 * language. 
-	 *
-	 * <p>The first occurence of {0} is replaced by <code>o1.toString()</code>.
-	 */
-	public static final String tr(String text, Object o1)
-	{
-		return MessageFormat.format(Roware.tr(text), new Object[] { o1 });
-	}
-
-	/**
-	 * Returns <code>text</code> translated into the currently selected
-	 * language. 
-	 *
-	 * <p>The first occurence of {0} is replaced by <code>o1.toString()</code>.
-	 * The first occurence of {1} is replaced by <code>o2.toString()</code>.
-	 */
-	public static final String tr(String text, Object o1, Object o2)
-	{
-		return MessageFormat.format(Roware.tr(text), new Object[] { o1, o2 });
-	}
-
-	/**
-	 * Returns <code>text</code> translated into the currently selected
-	 * language. 
-	 *
-	 * <p>The first occurence of {0} is replaced by <code>o1.toString()</code>.
-	 * The first occurence of {1} is replaced by <code>o2.toString()</code>.
-	 * The first occurence of {2} is replaced by <code>o3.toString()</code>.
-	 */
-	public static final String tr(String text, Object o1, Object o2,
-								  Object o3)
-	{
-		return MessageFormat.format(Roware.tr(text), 
-									new Object[] { o1, o2, o3 });
-	}
-
-	/**
-	 * Returns <code>text</code> translated into the currently selected
-	 * language. Prepends and appends <code>padding</code> whitespaces.
-	 */
-	public static final String tr(String text, int padding)
-	{
-		String s = tr(text);
-		if (padding <= 0) {
-			return s;
-		}
-		StringBuffer sb = new StringBuffer(s.length() + padding * 2);
-		append(sb, " ", padding);
-		sb.append(s);
-		append(sb, " ", padding);
-		return sb.toString();
-	}
-
-	/**
-	 * Returns <code>text</code> translated into the currently selected
-	 * language. Prepends <code>lpadding</code> whitespaces. Appends
-	 * <code>rpadding</code> whitespaces.
-	 */
-	public static final String tr(String text, int lpadding, int rpadding)
-	{
-		String s = tr(text);
-		StringBuffer sb = new StringBuffer(s.length() + lpadding + rpadding);
-		append(sb, " ", lpadding);
-		sb.append(s);
-		append(sb, " ", rpadding);
-		return sb.toString();
-	}
-
-	private static final void append(StringBuffer sb, String s, int count)
-	{
-		for (int i = 0; i < count; i++) {
-			sb.append(s);
-		}
-	}
 }
