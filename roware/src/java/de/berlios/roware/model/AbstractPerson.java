@@ -165,4 +165,17 @@ public abstract class AbstractPerson {
 		return result;
 	}
 
+	/**
+ 	* @see java.lang.Object#equals(java.lang.Object)
+ 	*/
+	public boolean equals(Object obj) {
+		if (obj instanceof AbstractPerson){
+			AbstractPerson other = (AbstractPerson) obj;
+			return (firstName.equals(other.getFirstName()) && name.equals(other.getName()));
+		}else{
+			return false;
+		}
+	}
+
+
 }
