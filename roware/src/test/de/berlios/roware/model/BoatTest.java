@@ -189,6 +189,7 @@ public class BoatTest extends TestCase {
 		// Test BoatRule		
 		valid = true;
 		try {
+			boat.setGender(Boat.MALE);
 			boat.validate();
 		} catch (RuleViolationException e) {
 			valid = false;
