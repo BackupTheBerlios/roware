@@ -9,9 +9,8 @@
             <generator class="native"/>
         </id>
 		<discriminator column="subclass" type="string"/>
-        <property name="name" column="name"/>
-        <property name="gender" column="gender"/>
-        <property name="coach" column="isCoach"/>
+       <property name="gender" column="gender"/>
+       <property name="birthday" column="birthday"/>
         <subclass name="de.berlios.roware.model.Athlete" discriminator-value="Athlete">
         	<property name="weight" column="weight"/>
     	</subclass>

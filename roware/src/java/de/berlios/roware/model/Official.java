@@ -21,65 +21,20 @@
 package de.berlios.roware.model;
 
 /**
- * Club - The Superclass for anythiong Persons may belong to. This may be a Rowing Club, a Organization specialized in doing Races,
- * a National Federation (like the German DRV) or something the like
- * 
- * @author Tammo van Lessen
- * @version $id: $
+ * Official - This Class is Superclass for all Official Persons used within a roware Competition 
+ * @author jpraetorius
+ * @version $version$
  */
-public class Club extends AbstractPerson {
+public abstract class Official extends AbstractPerson {
 
 	private Club club;
-	private String shortName;
-	private String City;
 	
-
-	/**
-	 * TODO Club
-	 */
-	public Club() {
+	public void setClub(Club c){
+		club = c;
 	}
-
-	/**
-	 * @return
-	 */
-	public String getCity() {
-		return City;
-	}
-
-	/**
-	 * @return
-	 */
-	public Club getClub() {
+	
+	public Club getClub(){
 		return club;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getShortName() {
-		return shortName;
-	}
-
-	/**
-	 * @param string
-	 */
-	public void setCity(String string) {
-		City = string;
-	}
-
-	/**
-	 * @param club
-	 */
-	public void setClub(Club club) {
-		this.club = club;
-	}
-
-	/**
-	 * @param string
-	 */
-	public void setShortName(String string) {
-		shortName = string;
 	}
 
 }

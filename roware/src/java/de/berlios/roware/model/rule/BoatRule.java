@@ -87,6 +87,10 @@ public class BoatRule extends AbstractRule {
 				msg = I18n.tr("Ein Achter muss gesteuert sein");
 			}
 
+			if (boat.getGender() != boat.getTeam().getGender()){
+				msg = I18n.tr("Mannschaft und Boot müssen vom gleichen Typ sein");
+			}
+
 			if (msg != null) {
 				throw new RuleViolationException(this, msg); 
 			}

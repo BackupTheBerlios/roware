@@ -20,21 +20,25 @@
  */
 package de.berlios.roware.model;
 
+import java.util.Date;
+
 /**
  * Athlete
  * 
  * @author Tammo van Lessen
- * @version $Id: Athlete.java,v 1.4 2003/07/10 22:29:34 vanto Exp $
+ * @version $Id: Athlete.java,v 1.5 2003/07/15 16:02:40 jpraetorius Exp $
  */
 public class Athlete extends Participant {
 
 	private int weight;
+	private Date weightDate;
+	private boolean license;
 
 	/**
-	 * TODO Athlete
+	 * TODO Athlete Constructors
 	 */
 	public Athlete() {
-		super();
+		
 	}
 	
 	/**
@@ -45,8 +49,42 @@ public class Athlete extends Participant {
 		this.weight = weight;
 	}
 	
+	/**
+	 * @return the weight of the Athlete in gramms
+	 */
 	public int getWeight() {
 		return weight;
 	}
 
+	/**
+	 * Sets whether this Athlete has a valid License
+	 * @param b the Value to set
+	 */
+	public void setLicense(boolean b){
+		license = b;
+	}
+	
+	/**
+	 * returns whether this Athlete has a valid License
+	 * @return true if so, false otherwise
+	 */
+	public boolean hasLicense(){
+		return license;
+	}
+	
+	/**
+	 * The Date the given weight is from
+	 * @param d the Date
+	 */
+	public void setWeightDate(Date d){
+		weightDate = d;
+	}
+	
+	/**
+	 * Returns the Date at which the given weight was weighed.
+	 * @return the Date
+	 */
+	public Date getWeightDate(){
+		return weightDate;
+	}
 }

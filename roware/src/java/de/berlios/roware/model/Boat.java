@@ -37,8 +37,7 @@ import de.berlios.roware.model.rule.RulesManager;
  */
 public class Boat implements Checkable {
 	
-	private boolean coxed;
-	private Team team;
+	//Boat Classes
 	public static final int SINGLE_SCULLS = 1;
 	public static final int DOUBLE_SCULLS = 2;
 	public static final int QUADRUPPLE_SCULLS = 3;
@@ -50,29 +49,91 @@ public class Boat implements Checkable {
 	public static final int EIGHTS_COXED = 9;	
 	public static final int OTHER = 0;
 	
-	// TODO Implement this!!
-	public static final int JUNIOR_B = 1;
-	public static final int JUNIOR_A = 2;
-	public static final int SENIOR_B = 3;
-	public static final int SENIOR_A = 4;
+	//Age classes
+	public static final int CHILDREN_11 = 1;
+	public static final int CHILDREN_12 = 2;
+	public static final int CHILDREN_13 = 3;
+	public static final int CHILDREN_14 = 4;
+	public static final int JUNIOR_B = 5;
+	public static final int JUNIOR_A = 6;
+	public static final int SENIOR_B = 7;
+	public static final int SENIOR_A = 8;
+	public static final int MASTERS_A = 9;
+	public static final int MASTERS_B = 10;
+	public static final int MASTERS_C = 11;
+	public static final int MASTERS_D = 12;
+	public static final int MASTERS_E = 13;
+	public static final int MASTERS_F = 14;
+	public static final int MASTERS_G = 15;
+	public static final int MASTERS_H = 16;
 	
-	// TODO Implement this!!
+	//Gender Classes
 	public static final int MALE = 1;
 	public static final int FEMALE = 2;
 	public static final int MIXED = 3;
+	
+	private boolean coxed;
+	private Team team;
 	
 	private List athletes = new LinkedList();
 	private List ruleViolations = new ArrayList();
 	private Athlete cox = null;
 	private boolean lightweight = false;
 	private int type = 0;
-	private int seats = 0; 
+	private int seats = 0;
+	private int age = 0;
+	private int gender = 0; 
 	
 	/**
-	 * TODO Boat 
+	 * Boat Constructor
 	 */
 	public Boat(int type) {
 		setType(type);
+	}
+	
+	public Boat(int type, boolean lightweight) {
+			setType(type);
+			setLightweight(lightweight);
+		}
+	
+	public Boat(int type, int gender){
+		setType(type);
+		setGender(gender);
+	}
+	
+	public Boat(int type, int gender,boolean lightweight){
+			setType(type);
+			setGender(gender);
+			setLightweight(lightweight);
+		}
+	
+	public Boat(int type, int gender, int age){
+		setType(type);
+		setGender(gender);
+		setAge(age);
+	}
+	
+	public Boat(int type, int gender, int age, boolean lightweight){
+		setType(type);
+		setGender(gender);
+		setAge(age);
+		setLightweight(lightweight);
+	}
+	
+	public int getAge(){
+		return age;
+	}
+	
+	public void setAge(int age){
+		this.age = age;
+	}
+	
+	public void setGender(int gender){
+		this.gender = gender;
+	}
+	
+	public int getGender(){
+		return gender;
 	}
 	
 	public int getType() {

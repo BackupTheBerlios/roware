@@ -26,7 +26,7 @@ import java.util.List;
  * Team
  * 
  * @author Tammo van Lessen
- * @version $Id: Team.java,v 1.6 2003/07/10 22:29:34 vanto Exp $
+ * @version $Id: Team.java,v 1.7 2003/07/15 16:02:40 jpraetorius Exp $
  * 
  * TODO: Add equals() and hashcode()!!!!!!!!! 
  */
@@ -62,6 +62,10 @@ public class Team {
 	public void setAthletes(List aths) {
 		athletes = aths;
 	}
+	
+	public void addAthlete(Athlete a){
+		athletes.add(a);
+	}
 
 	/**
 	 * returns the average weight. 0 means unkown.
@@ -77,5 +81,27 @@ public class Team {
 			sum += ((Athlete)aths[i]).getWeight();
 		}
 		return Math.round(sum / aths.length);
+	}
+	
+	public int getGender(){
+		Object[] aths = athletes.toArray();
+		int sum = 0;
+		for (int i=0;i<aths.length;i++){
+			sum += ((Athlete)aths[i]).getGender();
+		}
+		int value = sum/aths.length;
+		sum = sum%aths.length;		
+		if(sum == 0){
+			//This is one or two for pure Boats resulting in the right gender
+			return value;
+		}else{
+			//in any other Case the Boat is mixed
+			return Boat.MIXED;	
+		}
+	}
+	
+	public int getAge(){
+		//TODO Implement this right
+		return Boat.SENIOR_A;
 	}
 }

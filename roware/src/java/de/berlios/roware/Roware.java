@@ -31,7 +31,7 @@ import de.berlios.roware.model.Team;
  * Roware
  * 
  * @author Tammo van Lessen
- * @version $Id: Roware.java,v 1.4 2003/07/10 22:29:34 vanto Exp $
+ * @version $Id: Roware.java,v 1.5 2003/07/15 16:02:40 jpraetorius Exp $
  */
 public class Roware {
 
@@ -52,35 +52,31 @@ public class Roware {
 		ModelDAO mdao = new ModelDAO();
 		// test o/r
 		Athlete a = new Athlete();
-		a.setCoach(false);
 		a.setWeight(7200);
 		a.setName("Willi Wuchter");
 		Athlete b = new Athlete();
-		b.setCoach(false);
 		b.setWeight(7200);
 		b.setName("Willi Wuchter");
 		Athlete c = new Athlete();
-		c.setCoach(false);
 		c.setWeight(7200);
 		c.setName("Willi Wuchter");
 		Athlete d = new Athlete();
-		d.setCoach(false);
 		d.setWeight(7200);
 		d.setName("Willi Wuchter");
 
 		Team t1 = new Team();
-		t1.getAthletes().add(a);
-		t1.getAthletes().add(b);
+		t1.addAthlete(a);
+		t1.addAthlete(b);
 
 		Team t2 = new Team();
-		t2.getAthletes().add(a);
-		t2.getAthletes().add(c);
+		t2.addAthlete(a);
+		t2.addAthlete(c);
 
 		Team t3 = new Team();
-		t3.getAthletes().add(a);
-		t3.getAthletes().add(b);
-		t3.getAthletes().add(c);
-		t3.getAthletes().add(d);
+		t3.addAthlete(a);
+		t3.addAthlete(b);
+		t3.addAthlete(c);
+		t3.addAthlete(d);
 
 		try {
 			mdao.addParticipant(a);
