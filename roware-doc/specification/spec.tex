@@ -46,21 +46,29 @@
 \roware \\
 \huge Integriertes EDV-System zur Abwicklung von Ruderegatten
 \rule{\textwidth}{0.75pt}
-\par
+%\par 
+\\[4ex]
 }
+
+
+{\parindent=0cm
+\center{
+	\makebox(0,0)[c]{\resizebox{\textwidth}{!}{%
+        	\textsf{\textbf{Spezifikation}}}} 
+	}
+\vfill
+}
+
+
+
+
 \begin{flushleft}
 \normalsize
 Version 0.1\\[2ex]
-\today \\
+\today \\[2ex]
 Oliver Urschel\footnote{Aachen/Bad Kreuznach, \texttt{<urschcom@users.berlios.de>}}\\
 Tammo van Lessen\footnote{Stuttgart/Mainz, \texttt{<vanto@users.berlios.de>}}\\
 \end{flushleft}
-
-\vfill
-
-{\parindent=0cm
-\Huge Spezifikation
-}
 
 
 \setcounter{footnote}{0}
@@ -68,7 +76,7 @@ Tammo van Lessen\footnote{Stuttgart/Mainz, \texttt{<vanto@users.berlios.de>}}\\
 
 \onecolumn
 {\parindent=0cm\thispagestyle{empty}
-\copyright{} Copyright 2003 Tammo van Lessen
+\copyright{} Copyright 2003 row@re team
 \bigskip
 
 Die Verteilung dieses Dokuments in elektronischer oder gedruckter
@@ -94,6 +102,8 @@ Dieses Dokument wurde mit \LaTeX{} gesetzt.
 \thispagestyle{empty}
 %\twocolumn
 %-------------------------------------------------------------------------
+\tableofcontents
+%-------------------------------------------------------------------------
 \chapter{Einleitung}
 \section{Zielsetzung}
 In diesem Dokument sind die Anforderungen an das Projekt \roware
@@ -113,13 +123,13 @@ Das Programm soll auf beliebigen Plattformen lauffähig sein. Deshalb wird es als
 \section{Produktfunktionen}
 Das Produkt stellt dem Regattaveranstalter folgende Funktionen zur Verfügung
 
-\textbf{Ausschreibung}
+\subsection*{Ausschreibung}
 \begin{itemize}
 \item Ausschreibung erstellen
 \item Ausschreibung veröffentlichen (HTML, PDF, xregatta)
 \end{itemize}
 
-\textbf{Meldeschluss}
+\subsection*{Meldeschluss}
 \begin{itemize}
 \item Daten einlesen aus xregatta-format
 \item Daten eingeben (Papiermeldung)
@@ -129,7 +139,7 @@ Das Produkt stellt dem Regattaveranstalter folgende Funktionen zur Verfügung
 \item Meldeergebnis veröffentlichen (HTML, PDF, xregatta)
 \end{itemize}
 
-\textbf{Regattabüro}
+\subsection*{Regattabüro}
 \begin{itemize}
 \item Nachmeldung/Abmeldung/Ummeldung erfassen und damit verbundene Rennverschiebungen verarbeiten
 \item Jugendlizenzen kontrollieren/erfassen
@@ -143,7 +153,7 @@ Das Produkt stellt dem Regattaveranstalter folgende Funktionen zur Verfügung
 \item Ergebnisse veröffentlichen (HTML, PDF, xregatta)
 \end{itemize}
 
-\textbf{Start/Ziel}
+\subsection*{Start/Ziel}
 \begin{itemize}
 \item Startberechtigung kontrollieren (Übergewicht, Zusatzgewicht, unerlaubte Renngemeinschaften usw.)
 \item Ausschluss von Mannschaften erfassen (Geldstrafen???)
@@ -162,14 +172,15 @@ Sie beschreiben die Funktionalität des zu erstellenden Systems.
 
 \section{Aktoren}
 \subsection{Benutzer}
-Vor der Anmeldung an das System sind haben alle Benutzer die gleiche Funktion und die gleichen Möglichkeiten. Nach der Anmeldung ergibt sich durch das Rechtemanagment eine neue Situation, die Benutzer werden in weitere Gruppen mit unterschiedlichen Rechten aufgeteilt.
+Vor der Anmeldung an das System sind haben alle Benutzer die gleiche Funktion und die gleichen Möglichkeiten (\textbf{AKT Benutzer}). Nach der Anmeldung ergibt sich durch das Rechtemanagment eine neue Situation, die Benutzer werden in weitere Gruppen mit unterschiedlichen Rechten aufgeteilt.
 \begin{itemize}
-\item Benutzer im Regattabüro (\emph{ACT-Admin})
-\item Benutzer an der Wage (\emph{ACT-Waage})
-\item Benutzer am Start (\emph{ACT-Start})
-\item Benutzer im Ziel (\emph{ACT-Ziel})
-\item Benutzer an der Strecke (\emph{ACT-Zeit})
-\item Gast (\emph{ACT-Gast})
+\item Benutzer im Regattabüro (\textbf{AKT Admin})
+\item Benutzer an der Wage (\textbf{AKT Kasse})
+\item Benutzer an der Wage (\textbf{AKT Waage})
+\item Benutzer am Start (\textbf{AKT Start})
+\item Benutzer im Ziel (\textbf{AKT Ziel})
+\item Benutzer an der Strecke (\textbf{AKT Zeit})
+\item Gast (\textbf{AKT Gast})
 \item TODO: weitere Benutzer?
 \end{itemize}
 
@@ -185,98 +196,135 @@ Die hier beschriebenen Geschäftsprozesse beschreiben ausschließlich die Interakt
 	{Der Benutzer ist nun angemeldet, es erscheint das Hauptfenster}
 	{Es wird die Fehlermeldung ``Falsches Kennwort'' angezeigt, das 
 	Anmeldefenster bleibt angezeigt.}
-	{Benutzer}
+	{AKT Benutzer}
 
 \subsection {Ausschreibung erstellen}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Admin}
 
-\subsection {Ausschreibung veröffentlichen (HTML, PDF, xregatta)}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\subsection {Ausschreibung veröffentlichen}
+\usecase{}{TODO}{}{}{AKT Admin}
 
-\subsection {Daten einlesen aus xregatta-format}
-\usecase{}{TODO}{}{}{ACT-Admin}
-
-\subsection {Daten eingeben (Papiermeldung)}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\subsection {Daten eingeben}
+\usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Daten überprüfen und korrigieren}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Rennen verlosen}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Rennzeiten festlegen}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Admin}
 
-\subsection {Meldeergebnis veröffentlichen (HTML, PDF, xregatta)}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\subsection {Meldeergebnis veröffentlichen}
+\usecase{}{TODO}{}{}{AKT Admin}
 
-\subsection {Nachmeldung/Abmeldung/Ummeldung erfassen und damit verbundene Rennverschiebungen verarbeiten}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\subsection {Nachmeldung erfassen}
+\usecase{}{TODO}{}{}{AKT Admin}
 
-\subsection {Jugendlizenzen kontrollieren/erfassen}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\subsection {Abmeldung erfassen}
+\usecase{}{TODO}{}{}{AKT Admin}
 
-\subsection {Schiedsrichtereinsatzplan erstellen, veröffentlichen}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\subsection {Ummeldung erfassen}
+\usecase{}{TODO}{}{}{AKT Admin}
+
+\subsection {Jugendlizenzen erfassen}
+\usecase{}{TODO}{}{}{AKT Admin}
+
+\subsection {Jugendlizenzen kontrollieren}
+\usecase{}{TODO}{}{}{AKT Admin}
+
+\subsection {Schiedsrichtereinsatzplan erstellen}
+\usecase{}{TODO}{}{}{AKT Admin}
+
+\subsection {Schiedsrichtereinsatzplan veröffentlichen}
+\usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Waage erfassen}
-\usecase{}{TODO}{}{}{ACT-Waage, ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Waage, AKT Admin}
 
-\subsection {Kasse Buchungen, Quittung erstellen, Berichte erstellen}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\subsection {Kassenbuchungen erstellen}
+\usecase{}{TODO}{}{}{AKT Kasse, AKT Admin}
+
+\subsection {Quittung erstellen}
+\usecase{}{TODO}{}{}{AKT Kasse, AKT Admin}
+
+\subsection {Berichte erstellen}
+\usecase{}{TODO}{}{}{AKT Kasse, AKT Admin}
 
 \subsection {Rennen verlegen}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Einsprüche erfassen}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Schiedsrichterbericht erstellen}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Urkunden drucken}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Admin}
 
-\subsection {Ergebnisse veröffentlichen (HTML, PDF, xregatta)}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\subsection {Ergebnisse veröffentlichen}
+\usecase{}{TODO}{}{}{AKT Admin}
 
-\subsection {Startberechtigung kontrollieren (Übergewicht, Zusatzgewicht, unerlaubte Renngemeinschaften usw.)}
-\usecase{}{TODO}{}{}{ACT-Start, ACT-Admin}
+\subsection {Startberechtigung kontrollieren}
+\usecase{}{TODO}{}{}{AKT Start, AKT Admin}
 
-\subsection {Ausschluss von Mannschaften erfassen (Geldstrafen???)}
-\usecase{}{TODO}{}{}{ACT-Start, ACT-Ziel}
+\subsection {Ausschluss von Mannschaften erfassen}
+\usecase{}{TODO}{}{}{AKT Start, AKT Ziel}
 
 \subsection {Mannschaften zu Rennen einteilen}
-\usecase{}{TODO}{}{}{ACT-Start, ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Start, AKT Admin}
 
 \subsection {Rennen starten}
-\usecase{}{TODO}{}{}{ACT-Start, ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Start, AKT Admin}
 
 \subsection {Zwischenzeiten nehmen}
-\usecase{}{TODO}{}{}{ACT-Zeit, ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Zeit, AKT Admin}
 
-\subsection {Unfälle erfassen (Kentern, Bootsschaden usw.)}
-\usecase{}{TODO}{}{}{ACT-Zeit, ACT-Start, ACT-Ziel, ACT-Admin}
+\subsection {Unfälle erfassen}
+\usecase{}{TODO}{}{}{AKT Zeit, AKT Start, AKT Ziel, AKT Admin}
 
 \subsection {Einsprüche erfassen}
-\usecase{}{TODO}{}{}{ACT-Admin}
+\usecase{}{TODO}{}{}{AKT Admin}
 
-\subsection {Zeit nehmen (Ziel)}
-\usecase{}{TODO}{}{}{ACT-Ziel, ACT-Admin}
+\subsection {Zeit nehmen}
+\usecase{}{TODO}{}{}{AKT Ziel, AKT Admin}
 
 \subsection {Zielfotos hochladen}
-\usecase{}{TODO}{}{}{ACT-Ziel, ACT-Admin}
-
-
+\usecase{}{TODO}{}{}{AKT Ziel, AKT Admin}
+TODO: Weitere Usecases?
+%-------------------------------------------------------------------------
+\chapter{Nichtfunktionale Anforderungen}
+\section{Leistungsanforderungen}
+TODO: Mengengerüst, Kommunikation, Synchronisation der Daten
+\section{Entwurfseinschränkungen}
+TODO: Nur PHP/PostgreSQL; HTML, JavaScript ?
+\section{Verfügbarkeit}
+Keine besonderen Anforderungen bzgl. Verfügbarkeit.
+\section{Sicherheit}
+TODO: Daten werden in Datenbank persistent gespeichert, regelmässige 
+automatische Backups etc.
+\section{Robustheit}
+TODO: Robustheit gegenüber fehlerhaften Einträgen, Validierung etc
+\section{Wartbarket}
+TODO: Entwurfsregeln zur Verbesserung der Wartbarkeit des PHPcodes, z.B. 
+Objektorientierung, Daten- kapselung und -abstraktion, Trennung von 
+Businesslogik und Darstellungsschicht.
+\section{Portabilität}
+TODO: Windows, Unix-derivate -> (W|L)AMP
+%-------------------------------------------------------------------------
 \chapter{Graphische Benutzeroberfläche}
 TODO
 \section{Anmeldefenster}
 TODO
 \section{Hauptfenser}
 TODO
+%-------------------------------------------------------------------------
 \chapter{Daten}
 TODO Datenstruktur beschreiben
+%-------------------------------------------------------------------------
+\chapter{Begriffslexikon}
 %-------------------------------------------------------------------------
 \chapter{Offene Fragen}
 %\begin{itemize}
