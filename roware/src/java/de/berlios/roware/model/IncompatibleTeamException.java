@@ -18,31 +18,23 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
-package de.berlios.roware.model.rule;
+package de.berlios.roware.model;
 
 import de.berlios.roware.i18n.I18n;
 
 /**
- * RuleNotFoundException
+ * IncompatibleTeamException
  * 
- * @author <a href="mailto:vanto@users.berlios.de">Tammo van Lessen</a>
- * @version $id$
+ * @author Tammo van Lessen
+ * @version $id: $
  */
-public class RuleNotFoundException extends Exception {
+public class IncompatibleTeamException extends Exception {
 
 	/**
-	 * @param rule rules name
+	 * 
 	 */
-	public RuleNotFoundException(String rule) {
-		super(I18n.tr("Rule {0} is not registered", rule));
-	}
-
-	/**
-	 * @param rule rules name
-	 * @param e cause
-	 */
-	public RuleNotFoundException(String rule, Exception e) {
-		super(I18n.tr("Rule {0} is not registered", rule),e);
+	public IncompatibleTeamException(Boat boat, Team team) {
+		super(I18n.tr("Boot und Team sind inkompatibel"));
 	}
 
 }

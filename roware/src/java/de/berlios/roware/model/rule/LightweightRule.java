@@ -21,28 +21,37 @@
 package de.berlios.roware.model.rule;
 
 import de.berlios.roware.i18n.I18n;
+import de.berlios.roware.model.Boat;
 
 /**
- * RuleNotFoundException
+ * LightweightRule
  * 
- * @author <a href="mailto:vanto@users.berlios.de">Tammo van Lessen</a>
- * @version $id$
+ * @author Tammo van Lessen
+ * @version $id: $
  */
-public class RuleNotFoundException extends Exception {
+public class LightweightRule extends AbstractRule {
 
-	/**
-	 * @param rule rules name
-	 */
-	public RuleNotFoundException(String rule) {
-		super(I18n.tr("Rule {0} is not registered", rule));
+	public LightweightRule() {
 	}
 
 	/**
-	 * @param rule rules name
-	 * @param e cause
+	 * @see de.berlios.roware.model.rule.AbstractRule#getCheckableClasses()
 	 */
-	public RuleNotFoundException(String rule, Exception e) {
-		super(I18n.tr("Rule {0} is not registered", rule),e);
+	public Class[] getCheckableClasses() {
+		return new Class[] {Boat.class};
+	}
+
+	/**
+	 * @see de.berlios.roware.model.rule.AbstractRule#check(de.berlios.roware.model.rule.Checkable)
+	 */
+	public void check(Checkable obj) throws RuleViolationException {
+		if (obj instanceof Boat) {
+			Boat boat = (Boat)obj;
+			//TODO 70kg is hardcoded, make it flexible!!!
+			if (boat.getTeam().getAverageWeight() > 70) {
+				throw new RuleViolationException(this, I18n.tr("Das Durchschnittsgewicht darf 70kg nicht überschreiten"));
+			}
+		}
 	}
 
 }

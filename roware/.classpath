@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <classpath>
-  <classpathentry kind="src" path="src/java">
-  </classpathentry>
-  <classpathentry kind="var" rootpath="JRE_SRCROOT" path="JRE_LIB" sourcepath="JRE_SRC">
-  </classpathentry>
-  <classpathentry kind="var" path="MAVEN_REPO/commons-configuration/jars/commons-configuration-1.0-dev-3.20030603.101200.jar">
-  </classpathentry>
-  <classpathentry kind="output" path="target/classes">
-  </classpathentry>
+    <classpathentry kind="src" path="src/java"/>
+    <classpathentry kind="src" path="src/test"/>
+    <classpathentry kind="var" path="MAVEN_REPO/junit/jars/junit-3.8.1.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/commons-configuration/jars/commons-configuration-1.0-dev-3.20030603.101200.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/turbine/jars/turbine-2.2.jar"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -19,6 +19,7 @@
  *
  */package de.berlios.roware.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ import java.util.List;
  */
 public class Team {
 
-	private List athletes;
+	private List athletes = new ArrayList();
 
 	/**
 	 * TODO Team
@@ -41,8 +42,8 @@ public class Team {
 		athletes.add(ath);
 	}
 	
-	public Athlete[] getAthletes() {
-		return (Athlete[])athletes.toArray();
+	public Object[] getAthletes() {
+		return athletes.toArray();
 	}
 
 	
@@ -55,13 +56,13 @@ public class Team {
 	 * @return
 	 */
 	public int getAverageWeight() {
-		Athlete[] aths = (Athlete[])athletes.toArray();
+		Object[] aths = athletes.toArray();
 		int sum = 0;
 		for (int i = 0; i < aths.length; i++) {
-			if (aths[i].getWeight() == 0) {
+			if (((Athlete)aths[i]).getWeight() == 0) {
 				return 0;
 			}
-			sum += aths[i].getWeight();
+			sum += ((Athlete)aths[i]).getWeight();
 		}
 		return Math.round(sum / aths.length);
 	}

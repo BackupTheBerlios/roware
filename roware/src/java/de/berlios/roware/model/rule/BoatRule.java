@@ -26,8 +26,8 @@ import de.berlios.roware.model.Boat;
 /**
  * BoatRule
  * 
- * @author <a href="mailto:vanto@users.berlios.de">Tammo van Lessen</a>
- * @version $id$
+ * @author Tammo van Lessen
+ * @version $id: $
  */
 public class BoatRule extends AbstractRule {
 
@@ -52,29 +52,45 @@ public class BoatRule extends AbstractRule {
 		String msg = null; 
 		if (obj instanceof Boat) {
 			Boat boat = (Boat)obj;
-			if ((boat.getType() == Boat.SINGLE_SCULLS)
-				&& (boat.getTeam().getAthletes().length) != 1) {
-				msg = I18n.tr("In einem Einer muss genau eine Person sitzen");
-			} else if ((boat.getType() == Boat.DOUBLE_SCULLS)
-						&& (boat.getTeam().getAthletes().length) != 2) {
-				msg = I18n.tr("In einem Zweier müssen genau 2 Person sitzen");
-			} else if ((boat.getType() == Boat.QUADRUPPLE_SCULLS)
-						&& (boat.getTeam().getAthletes().length) != 4) {
-				msg = I18n.tr("In einem Vierer müssen genau 4 Person sitzen");
-			} else if ((boat.getType() == Boat.PAIRS)
-						&& (boat.getTeam().getAthletes().length) != 2) {
-				msg = I18n.tr("In einem Zweier müssen genau 2 Person sitzen");
-			} else if ((boat.getType() == Boat.FOURS)
-						&& (boat.getTeam().getAthletes().length) != 4) {
-				msg = I18n.tr("In einem Vierer müssen genau 4 Person sitzen");
-			} else if ((boat.getType() == Boat.EIGHTS)
-						&& (boat.getTeam().getAthletes().length) != 8) {
-				msg = I18n.tr("In einem Achter müssen genau 8 Person sitzen");
+			if (!boat.isVirtual()) {
+				if ((boat.getType() == Boat.SINGLE_SCULLS)
+					&& (boat.getTeam().getAthletes().length) != 1) {
+					msg = I18n.tr("In einem Einer muss genau eine Person sitzen");
+				} else if ((boat.getType() == Boat.DOUBLE_SCULLS)
+							&& (boat.getTeam().getAthletes().length) != 2) {
+					msg = I18n.tr("In einem Zweier müssen genau 2 Person sitzen");
+				} else if ((boat.getType() == Boat.QUADRUPPLE_SCULLS)
+							&& (boat.getTeam().getAthletes().length) != 4) {
+					msg = I18n.tr("In einem Vierer müssen genau 4 Person sitzen");
+				} else if ((boat.getType() == Boat.PAIRS)
+							&& (boat.getTeam().getAthletes().length) != 2) {
+					msg = I18n.tr("In einem Zweier müssen genau 2 Person sitzen");
+				} else if ((boat.getType() == Boat.FOURS)
+							&& (boat.getTeam().getAthletes().length) != 4) {
+					msg = I18n.tr("In einem Vierer müssen genau 4 Person sitzen");
+				} else if ((boat.getType() == Boat.EIGHTS_COXED)
+							&& (boat.getTeam().getAthletes().length) != 8) {
+					msg = I18n.tr("In einem Achter müssen genau 8 Person sitzen");
+				}
+				
+				if (msg != null) {
+					throw new RuleViolationException(this, msg); 
+				}
 			}
-			
+			if ((boat.getType() == Boat.SINGLE_SCULLS) && (boat.isCoxed())) {
+				msg = I18n.tr("Ein Einer kann nicht gesteuert werden");
+			}
+			if ((boat.getType() == Boat.DOUBLE_SCULLS) && (boat.isCoxed())) {
+				msg = I18n.tr("Ein Einer kann nicht gesteuert werden");
+			}
+			if ((boat.getType() == Boat.EIGHTS_COXED) && (!boat.isCoxed())) {
+				msg = I18n.tr("Ein Achter muss gesteuert sein");
+			}
+
 			if (msg != null) {
 				throw new RuleViolationException(this, msg); 
 			}
+
 		}
 	}
 

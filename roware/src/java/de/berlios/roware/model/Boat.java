@@ -32,8 +32,8 @@ import de.berlios.roware.model.rule.RulesManager;
 /**
  * Boat
  * 
- * @author <a href="mailto:vanto@users.berlios.de">Tammo van Lessen</a>
- * @version $id$
+ * @author Tammo van Lessen
+ * @version $id: $
  */
 public class Boat implements Checkable {
 	
@@ -42,9 +42,12 @@ public class Boat implements Checkable {
 	public static final int SINGLE_SCULLS = 1;
 	public static final int DOUBLE_SCULLS = 2;
 	public static final int QUADRUPPLE_SCULLS = 3;
-	public static final int PAIRS = 4;
-	public static final int FOURS = 5;
-	public static final int EIGHTS = 6;	
+	public static final int QUADRUPPLE_SCULLS_COXED = 4;
+	public static final int PAIRS = 5;
+	public static final int PAIRS_COXED = 6;
+	public static final int FOURS = 7;
+	public static final int FOURS_COXED = 8;
+	public static final int EIGHTS_COXED = 9;	
 	public static final int OTHER = 0;
 	
 	// TODO Implement this!!
@@ -62,14 +65,14 @@ public class Boat implements Checkable {
 	private List ruleViolations = new ArrayList();
 	private Athlete cox = null;
 	private boolean lightweight = false;
-	private int type = 0; 
+	private int type = 0;
+	private int seats = 0; 
 	
 	/**
 	 * TODO Boat 
 	 */
-	public Boat(int type, boolean coxed) {
-		this.type = type;
-		this.coxed = coxed;
+	public Boat(int type) {
+		setType(type);
 	}
 	
 	public int getType() {
@@ -78,9 +81,54 @@ public class Boat implements Checkable {
 	
 	public void setType(int type) {
 		this.type = type;
+		switch (type) {
+			case SINGLE_SCULLS: 
+				seats = 1;
+				coxed = false;
+				break;
+			case DOUBLE_SCULLS:
+				seats = 2;
+				coxed = false;
+				break;
+			case QUADRUPPLE_SCULLS:
+				seats = 4;
+				coxed = false;
+				break;
+			case QUADRUPPLE_SCULLS_COXED:
+				seats = 4;
+				coxed = true;
+				break;
+			case PAIRS:
+				seats = 2;
+				coxed = false;
+				break;
+			case PAIRS_COXED:
+				seats = 2;
+				coxed = true;
+				break;
+			case FOURS:
+				seats = 4;
+				coxed = false;
+				break;
+			case FOURS_COXED:
+				seats = 4;
+				coxed = true;
+				break;
+			case EIGHTS_COXED:
+				seats = 8;
+				coxed = true;
+				break;
+			default: //case OTHER:
+				seats = -1;
+				coxed = false;
+				break;
+		}
 	}
 	
-	public void setTeam(Team team) {
+	public void setTeam(Team team) throws IncompatibleTeamException {
+		if (team.getAthletes().length != seats) {
+			throw new IncompatibleTeamException(this, team);
+		}
 		this.team = team;
 	}
 	
@@ -90,10 +138,6 @@ public class Boat implements Checkable {
 	
 	public boolean isVirtual() {
 		return (team == null);
-	}
-	
-	public void setCoxed(boolean coxed) {
-		this.coxed = coxed;
 	}
 	
 	public boolean isCoxed() {

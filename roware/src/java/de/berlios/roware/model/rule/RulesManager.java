@@ -26,14 +26,15 @@ import java.util.Map;
 /**
  * RulesManager
  * 
- * @author <a href="mailto:vanto@users.berlios.de">Tammo van Lessen</a>
- * @version $id$
+ * @author Tammo van Lessen
+ * @version $id: $
  */
 public class RulesManager {
 
 	private static RulesManager singleton = new RulesManager();
 
 	private Map rules = new HashMap();
+	private Map rulePool = new HashMap();
 	
 	/**
 	 * TODO RulesManager
@@ -48,20 +49,37 @@ public class RulesManager {
 		return singleton;
 	}
 	
-	public void registerRule(AbstractRule rule) {
-		rules.put(rule.getClass().getName(), rule);
+	public void registerRule(Class rule) throws Exception {
+		if (AbstractRule.class.isAssignableFrom(rule)) {
+			rules.put(rule.getName(), rule);
+		} 
+		else throw new Exception("Class is not a Rule");
 	}
 	
-	public void deregisterRule(AbstractRule rule) {
-		rules.remove(rule.getClass().getName());
+	public void deregisterRule(Class rule) {
+		rules.remove(rule.getName());
 	}
 	
 	public AbstractRule getRuleByName(String name) throws RuleNotFoundException {
-		AbstractRule rl = (AbstractRule) rules.get(name);
-		if (rl == null) {
-			throw new RuleNotFoundException(name);
+		AbstractRule rule = (AbstractRule)rulePool.get(name);
+		// lazy init
+		if (rule == null) {
+			Class ruleClass = (Class)rules.get(name);
+			if (ruleClass == null) {
+				throw new RuleNotFoundException(name);
+			} else {
+				try {
+					rule = (AbstractRule)ruleClass.newInstance();
+					rules.put(ruleClass.getName(), rule);
+					return rule;
+				} catch (InstantiationException e) {
+					throw new RuleNotFoundException(name, e);
+				} catch (IllegalAccessException e) {
+					throw new RuleNotFoundException(name, e);
+				}
+			}
 		}
-		return rl;
+		return null;
 	}
 	
 	/**
