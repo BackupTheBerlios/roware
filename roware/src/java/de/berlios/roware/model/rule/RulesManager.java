@@ -70,7 +70,7 @@ public class RulesManager {
 			} else {
 				try {
 					rule = (AbstractRule)ruleClass.newInstance();
-					rules.put(ruleClass.getName(), rule);
+					rulePool.put(ruleClass.getName(), rule);
 					return rule;
 				} catch (InstantiationException e) {
 					throw new RuleNotFoundException(name, e);
@@ -78,8 +78,7 @@ public class RulesManager {
 					throw new RuleNotFoundException(name, e);
 				}
 			}
-		}
-		return null;
+		} else	return rule;
 	}
 	
 	/**
@@ -95,9 +94,7 @@ public class RulesManager {
 		}
 		AbstractRule[] rls = (AbstractRule[])rules.values().toArray();
 		for (int i = 0; i < rls.length; i++) {
-			if (rls[i].canCheck(object)) {
-				rls[i].check(object);
-			}
+			rls[i].check(object);
 		}
 		
 		return;
@@ -105,6 +102,8 @@ public class RulesManager {
 	
 	public void check(Checkable object, String rule) throws RuleViolationException, RuleNotFoundException {
 		AbstractRule rl = getRuleByName(rule);
-		rl.check(object);
+		if (rl.canCheck(object)) {
+			rl.check(object);	
+		}		
 	}
 }

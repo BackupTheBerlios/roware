@@ -183,7 +183,16 @@ public class BoatTest extends TestCase {
 			fail("Rule registration failed");
 		}
 
-		// Test RuleNotFound		
+		// Test BoatRule		
+		valid = true;
+		try {
+			boat.validate();
+		} catch (RuleViolationException e) {
+			valid = false;
+		}
+		assertTrue(valid);
+
+		// Test BoatRule and LightweightRule		
 		valid = true;
 		boat.setLightweight(true);
 		try {
