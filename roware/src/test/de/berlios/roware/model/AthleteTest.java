@@ -21,6 +21,8 @@
 package de.berlios.roware.model;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
+
 import junit.framework.TestCase;
 
 /**
@@ -47,14 +49,14 @@ public class AthleteTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		ath = new Athlete();
-		ath.setBirthday(new Date(90,0,1));
+		ath.setBirthday(new GregorianCalendar(1990,0,1).getTime());
 		ath.setFirstName("John");
 		ath.setName("Doe");
-		ath.setGender(Participant.MALE);
+		ath.setGender(Boat.MALE);
 		ath.setId(12345);
 		ath.setLicense(true);
 		ath.setWeight(70);
-		ath.setWeightDate(new Date(90,0,1));
+		ath.setWeightDate(new GregorianCalendar(1990,0,1).getTime());
 				
 		workAddress = new Address("Street","12345","City",Address.TYPE_WORK,"+49 30 123 45 67",Address.PHONE_OFFICE,"john@doe.com",Address.EMAIL_OFFICE);
 		homeAddress1 = new Address("Street","12345","City",Address.TYPE_PRIVATE,"+49 30 123 45 67",Address.PHONE_OFFICE,"john@doe.com",Address.EMAIL_OFFICE);
@@ -95,8 +97,8 @@ public class AthleteTest extends TestCase {
 	}
 	
 	public void testWeightDate() {
-		Date d = new Date(90,0,2);
-		assertEquals(new Date(90,0,1),ath.getWeightDate());
+		Date d = new GregorianCalendar(1990,0,2).getTime();
+		assertEquals(new GregorianCalendar(1990,0,1).getTime(),ath.getWeightDate());
 		ath.setWeightDate(d);
 		assertEquals(d,ath.getWeightDate());
 		//this should be true also
@@ -111,8 +113,8 @@ public class AthleteTest extends TestCase {
 	}
 	
 	public void testBirthday() {
-		assertEquals(new Date(90,0,1),ath.getBirthday());
-		Date d = new Date(90,0,2);
+		assertEquals(new GregorianCalendar(1990,0,1).getTime(),ath.getBirthday());
+		Date d = new GregorianCalendar(1990,0,2).getTime();
 		ath.setBirthday(d);
 		assertEquals(d,ath.getBirthday());
 		//this should be true also
@@ -120,14 +122,14 @@ public class AthleteTest extends TestCase {
 	}
 	
 	public void testGender() {
-		assertEquals(Participant.MALE,ath.getGender());
-		ath.setGender(Participant.FEMALE);
-		assertEquals(Participant.FEMALE,ath.getGender());
+		assertEquals(Boat.MALE,ath.getGender());
+		ath.setGender(Boat.FEMALE);
+		assertEquals(Boat.FEMALE,ath.getGender());
 	}
 	
 	public void testGetAge() {
 		//TODO This has to be updated every Year... :(
-		assertEquals(Participant.CHILDREN_13,ath.getAge());
+		assertEquals(Boat.CHILDREN_13,ath.getAge());
 	}
 	
 	public void testFirstName() {

@@ -53,23 +53,23 @@ public class TeamTest extends TestCase {
 		
 		ath1 = new Athlete("John Doe");
 		ath1.setWeight(70);
-		ath1.setGender(Participant.MALE);
+		ath1.setGender(Boat.MALE);
 		
 		ath2 = new Athlete("Foo Bar");
 		ath2.setWeight(70);
-		ath2.setGender(Participant.MALE);
+		ath2.setGender(Boat.MALE);
 		
 		ath3 = new Athlete("Max Muster");
 		ath3.setWeight(70);
-		ath3.setGender(Participant.MALE);
+		ath3.setGender(Boat.MALE);
 		
 		ath4 = new Athlete("Susi Sorglos");
 		ath4.setWeight(70);
-		ath4.setGender(Participant.FEMALE);
+		ath4.setGender(Boat.FEMALE);
 		
 		ath5 = new Athlete("Rainer Zufall");
 		ath5.setWeight(70);
-		ath5.setGender(Participant.MALE);
+		ath5.setGender(Boat.MALE);
 		
 		team = new Team();
 		team.addAthlete(ath1);

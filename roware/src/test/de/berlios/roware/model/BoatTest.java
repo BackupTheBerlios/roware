@@ -110,9 +110,9 @@ public class BoatTest extends TestCase {
 		assertTrue(error);
 		
 		Athlete ath1 = new Athlete();
-		ath1.setGender(Athlete.MALE);
+		ath1.setGender(Boat.MALE);
 		Athlete ath2 = new Athlete();
-		ath2.setGender(Athlete.MALE);
+		ath2.setGender(Boat.MALE);
 		team.getAthletes().add(ath1);
 		team.getAthletes().add(ath2);
 		error = false;
@@ -148,7 +148,7 @@ public class BoatTest extends TestCase {
 		Boat boat = new Boat(Boat.DOUBLE_SCULLS);
 		assertNull(boat.getCox());
 		Athlete ath = new Athlete();
-		ath.setGender(Athlete.MALE);
+		ath.setGender(Boat.MALE);
 		boat.setCox(ath);
 		assertSame(ath, boat.getCox());
 	}
@@ -215,7 +215,7 @@ public class BoatTest extends TestCase {
 		super.setUp();
 		doubleScullsTeam = new Team();
 		Athlete ath = new Athlete();
-		ath.setGender(Athlete.MALE);
+		ath.setGender(Boat.MALE);
 		ath.setWeight(70);
 		doubleScullsTeam.getAthletes().add(ath);
 		doubleScullsTeam.getAthletes().add(ath);
