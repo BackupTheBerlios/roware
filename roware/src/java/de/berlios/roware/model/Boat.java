@@ -24,9 +24,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.berlios.roware.model.Athlete;
 import de.berlios.roware.model.rule.Checkable;
-import de.berlios.roware.model.rule.RuleReport;
+import de.berlios.roware.model.rule.RuleViolationException;
 import de.berlios.roware.model.rule.RulesManager;
 
 /**
@@ -103,15 +102,8 @@ public class Boat implements Checkable {
 	/**
 	 * @see de.berlios.roware.model.rule.Checkable#isValid()
 	 */
-	public boolean isValid() {
-		return RulesManager.getInstance().check(this);
-	}
-
-	/**
-	 * @see de.berlios.roware.model.rule.Checkable#addRuleReport(de.berlios.roware.model.rule.RuleReport)
-	 */
-	public void addRuleViolation(RuleReport report) {
-		ruleViolations.add(report);
+	public void validate() throws RuleViolationException {
+		RulesManager.getInstance().check(this);
 	}
 
 }

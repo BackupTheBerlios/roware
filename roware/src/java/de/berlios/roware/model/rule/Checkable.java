@@ -31,7 +31,6 @@ public interface Checkable {
 	/* returns true, if all loaded rules consider this
 	 * object as valid
 	 */
-	public boolean isValid(); 
-	public void addRuleViolation(RuleReport report);
+	public void validate() throws RuleViolationException; 
 			
 }

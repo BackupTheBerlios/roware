@@ -60,19 +60,17 @@ public class RulesManager {
 	 * @param object
 	 * @return
 	 */
-	public boolean check(Checkable object) {
+	public void check(Checkable object) throws RuleViolationException {
 		if (rules.isEmpty()) {
-			return true;
+			return;
 		}
 		AbstractRule[] rls = (AbstractRule[])rules.toArray();
 		for (int i = 0; i < rls.length; i++) {
 			if (rls[i].canCheck(object)) {
-				if (!rls[i].check(object)) {
-					return false;		
-				}
+				rls[i].check(object);
 			}
 		}
 		
-		return true;
+		return;
 	}
 }

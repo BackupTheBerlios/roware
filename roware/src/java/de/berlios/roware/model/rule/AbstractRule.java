@@ -57,6 +57,6 @@ public abstract class AbstractRule {
 	 * found problems should be reported by 
 	 * <code>addRuleViolation(String report)</code>
 	 */
-	public abstract boolean check(Checkable obj);
+	public abstract void check(Checkable obj) throws RuleViolationException;
 
 }
