@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project>
 
 	<!-- the version of maven's project object model -->
@@ -12,7 +12,7 @@
 
 	<!-- The version of the project under development, e.g.
 		1.1, 1.2, 2.0-dev -->
-	<currentVersion>0.1-SNAPSHOT</currentVersion>
+	<currentVersion>0.1</currentVersion>
 
 	<!-- details about the organization that 'owns' the project -->
 	<organization>
@@ -28,11 +28,11 @@
 		com.mycompany.accounts.reports, com.mycompany.accounts.reports
 		and com.mycompany.accounts.utils, the package would be
 		'com.mycompany.accounts' -->
-	<package>org.apache.maven.examples.simplewebapp</package>
+	<!--<package>org.apache.maven.examples.simplewebapp</package>-->
 
 	<package>de.berlios.roware</package>
 	<!-- a short description of what the project does -->
-	<shortDescription>Webbasierte Komplettl?sung f?r den Rudersport</shortDescription>
+	<shortDescription>Webbasierte Komplettlösung für den Rudersport</shortDescription>
 
 	<issueTrackingUrl>http://developer.berlios.de/support/?group_id=716</issueTrackingUrl>
 	
@@ -260,16 +260,16 @@
 
 	<reports>
 		<report>maven-jdepend-plugin</report>
-		<report>maven-checkstyle-plugin</report>
+		<!-- <report>maven-checkstyle-plugin</report> -->
 		<report>maven-changelog-plugin</report>
 		<report>maven-developer-activity-plugin</report>
 		<report>maven-file-activity-plugin</report>
 		<report>maven-tasklist-plugin</report>
 		<report>maven-javadoc-plugin</report>
 		<report>maven-jxr-plugin</report>
-		<report>maven-pmd-plugin</report>
+		<!--<report>maven-pmd-plugin</report>-->
 		<report>maven-junit-report-plugin</report>
-		<report>maven-clover-plugin</report>
+		<!-- <report>maven-clover-plugin</report> -->
 		<report>maven-statcvs-plugin</report>
 		<!-- <report>maven-linkcheck-plugin</report> -->
 
