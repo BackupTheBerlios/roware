@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+  <document>
+
+	<properties>
+	  <title>About</title>
+	</properties>
+
+	<body>
+	  <section name="Was ist Row@re">
+
+        <p>Ziel des Projekts ist die Entwicklung einer leistungsfähigen 
+        Regatta-Verwaltungssoftware für den Rudersport, welche den Vereinen kostenlos (also frei im Sinne 
+        freier Sprache, lizensiert unter der <a href="license.html">GNU Public License</a>) zur 
+        Verfügung gestellt wird.</p>
+     </section>
+     <section name="Features">
+        <p><ul>
+                <li>Row@re mach Ihr Leben leichter!<br/>
+                Das Abtippen von Listen können Sie sich in Zukuft sparen. Denn Row@re verfolgt den Einsatz, 
+                einmal erfasste Informationen auch zu nutzen. Beispiele sind elektronische Meldelisten, 
+                Lizenzlisten oder Zeiten. Daten aus dem System können problemlos in viele gängige Formate 
+                konvertiert werden, sei es <a href="http://xregatta.berlios.de">xregatta</a>, rtf, pdf oder html.<br/>
+                Außerdem ist Row@re ein Client-Server-System. Hierdurch stehen einmal erfasste Daten sofort 
+                an allen angeschlossenen Arbeitsplätzen zur Verfügung. Damit sorgt Row@re für eine nahtlose 
+                Kommunikation auf Ihrer Regatta. Eine Mannschaft hat kurzfristig abgemeldet - der Starter sieht 
+                die Änderung direkt auf seinem Bildschirm. Viele aufwendige Arbeiten erfolgen so automatisch - 
+                auf einen Mausklick.<br/></li>
+               
+               <li>Row@re ist einfach zu bedienen<br/>
+                Roware ist so einfach zu bedienen, wie im Internet zu surfen: die Oberfläche ist wie eine 
+                Website aufgebaut und unterstützt die Nutzer durch ihre Dialogführung. Die Installation soll 
+                als all-in-one-CD realisiert werden, läßt sich aber auch auf jedem gängigen Betriebssystem installieren:
+                Einfach die CD in den zukünftigen Server einlegen und 
+                einschalten, der Rest geschieht automatisiert. Eine Installation auf den Clients ist nicht nötig, 
+                da einfach Mozilla oder Internet-Explorer genutzt werden.<br/></li>
+               
+               <li>Row@re basiert auf neuester, leistungsfähiger Technologie<br/>
+                Die Software wird als J2EE-Webapplikation objektorientiert entwickelt. Hierdurch ist das 
+                System schnell und extrem zuverlässig, auch bei Eingabefehlern.<br/></li>
+                
+               <li>Row@re verwendet offene Standards<br/>
+                Row@re ist Open Source - Dies bedeutet, dass jedermann selbst Erweiterungen zu der Software 
+                schreiben und Anpassungen, zum Beispiel an ein eigenes Regelwerk, einfach selbst vornehmen kann. 
+                Row@re wächst mit Ihren Aufgaben!<br/>
+                Der Datenaustausch mit anderen Systemen, wie beispielsweise rudern.de, WeRow.com und Meldehelfern, 
+                geschieht über das ebenfalls offene XML-Format <a href="http://xregatta.berlios.de">xregatta</a>.
+                Hierdurch ist sichergestellt, dass Sie einmal erfasste Daten auch in einigen Jahren noch nutzen 
+                können - und sich nicht vor Lizenzgebühren zu fürchten brauchen.<br/></li>
+                
+               <li>Row@re kann sich auch der kleinste Veranstalter leisten<br/>
+                Nicht nur, dass die Software kostenlos zur Verfügung gestellt wird, auch die Kosten für die 
+                Hardware sind extrem gering. Durch die effiziente Programmierung und die Unterstützung von 
+                Linux kann als Server auch ein nicht mehr ganz neues System eingesetzt werden. Zusätzliche 
+                Kosten für teure Serverbetriebssysteme fallen auch nicht an. Das Netzwerkequipment und Laptops 
+                für die Arbeitsplätze sind meist bei Vereinsmitgliedern vorhanden. Da Row@re aber auf bewährte 
+                Technik setzt, sind auch die Anschaffungskosten vergleichsweise gering</li>
+            </ul>
+          </p>
+      </section>
+	  <section name="Kontakt">
+          <p>
+              Interessiert? Weitere Informationen erhalten sie unter <a href="mailto:roware@web.de">roware@web.de</a>.
+          </p>
+      </section>
+	</body>
+  </document>
+  
