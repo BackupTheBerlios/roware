@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ausschreibung xmlns="http://roware.berlios.de/ausschreibung/" 
+				xmlns:dc="http://purl.org/dc/elements/1.1/" 
+				xmlns:dcterms="http://purl.org/dc/terms/" 
+				xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+	<regatta id="84c28e5ebdde3176269db7041d245fc2">
+		<!-- ============================================================================ -->
+		<!-- BEGINN DES REGATTA KOPFES -->
+		<!-- ============================================================================ -->
+		<name>Südwestdeutsche Meisterschaften</name>
+		<untertitel>Landesmeisterschaften Rheinland-Pfalz / Saarland</untertitel>
+		<ort>in meiner Badewanne</ort>
+		<veranstalter>
+			<name>Landesruderverband Rheinland-Pfalz</name>
+			<name>Ruderbund Saar</name>
+			<name>Mainzer Ruder-Verein</name>
+			<!-- besser wäre vermutlich
+			<item id="1" pid="veranst1"/>
+			<item id="2" pid="veranst2"/>
+			wobei pid immer auf die personenliste verweist, in der die vcards gespeichert sind -->
+		</veranstalter>
+
+		<!-- Kalender -->
+		<!-- pid = personen id, did = datumsid -->
+		<datum vondid="regattatag1" bisdid="regattatag2"/> <!-- suche regattatag* aus datumliste (ref = did) -->
+		<meldeschluss did="meldeschluss" pid="meldeschluss"/>
+		<auslosung did="auslosung" pid="meldeschluss"/>
+
+		<!-- 4 Startplätze -->
+		<startplaetze>4</startplaetze>
+
+		<!-- Kosten für die Bugnr -->
+		<bugnummern koid="nrpfand"/>
+
+		<!-- Rennabstände -->
+		<rennabstand einheit="min">
+			<vorlauf>4</vorlauf>
+			<!-- hier auch hoffnungsläufe, halbfinals etc -->
+			<finale>5</finale>
+		</rennabstand>
+
+		<!-- Bankverbindung -->
+		<bankverbindung>
+			<bank>Mainzer Volksbank eG</bank>
+			<blz>551 900 00</blz>
+			<konto>15 085 020</konto>
+			<kennwort>Regatta</kennwort>
+		</bankverbindung>
+
+		<!-- Platz für die besonderen Bestimmungen -->
+		<bemerkungen>
+			<paragraph nr="1">
+				Spitzensportregatta
+			</paragraph>
+			<paragraph nr="2">
+				Absatz 2 enthält <b>fettgedrucktes</b>...
+			</paragraph>
+		</bemerkungen>
+		<!-- ============================================================================ -->
+		<!-- ENDE DES REGATTA KOPFES -->
+		<!-- ============================================================================ -->
+
+		<!-- ============================================================================ -->
+		<!-- BEGINN DER LISTEN -->
+		<!-- ============================================================================ -->
+		<!-- liste aller Kosten die in der Ausschreibung verwender werden -->
+		<kosten einheit="euro">
+			<item id="1">17</item>
+			<item id="2">20</item>
+			<item id="4">23</item>
+			<item id="8">25</item>
+
+			<item id="J1">5</item>
+			<item id="J2">10</item>
+			<item id="J4">12</item>
+
+			<!-- Reuegeld: R1 für 1er und 2er, R2 für 4er und 8er -->
+			<item id="R1">25</item>
+			<item id="R2">50</item>
+
+			<item id="nrpfand">5</item>
+
+			<!-- Nachmeldegebühr -->
+			<item id="1N">27</item>
+			<item id="2N">30</item>
+			<item id="4N">33</item>
+			<item id="8N">35</item>
+		</kosten>
+
+		<!-- liste aller Streckenlängen -->
+		<strecken>
+			<item id="1000" einheit="m">1000</item>
+			<item id="1500" einheit="m">1500</item>
+			<item id="2000" einheit="m">2000</item>
+		</strecken>
+
+		<!-- Klassifizierung. Es werden Gruppen aus kosten, strecken, pokal, lgw, "renngemeinschaft
+		erlaubt", Nachmeldegebühr und Reuegeld geschnürt. Sozusagen die verwendeten kombinationen aus
+		der Potenzmenge. Attribute per default auf lgw=false, pokal=false, rgm=true, nakoid = koid, 
+		rekoid=leer -->
+		<!-- id = id, koid= kostenid, nakoid = kostenid für nachmeldung, rekoid = kostenid für 
+		reuegeld, stid=streckenid -->
+		<klassen>
+			<!-- normale Rennen 1er, 2er, 4er, 8er-->
+			<item id="1" koid="1" nakoid="1N" rekoid="R1" stid="1000"/>
+			<item id="2" koid="2" nakoid="2N" rekoid="R1" stid="1000"/>
+			<item id="4" koid="4" nakoid="4N" rekoid="R2" stid="1000"/>
+			<item id="8" koid="8" nakoid="8N" rekoid="R2" stid="1000"/>
+
+			<!-- leichtgewichts Rennen 1er, 2er, 4er, 8er -->
+			<item id="L1" koid="1" stid="1000" rekoid="R1" lgw="true"/>
+			<item id="L2" koid="2" stid="1000" rekoid="R1" lgw="true"/>
+			<item id="L4" koid="4" stid="1000" rekoid="R2" lgw="true"/>
+			<item id="L8" koid="8" stid="1000" rekoid="R2" lgw="true"/>
+
+			<!-- Pokal Rennen 1er, 2er, 4er, 8er -->
+			<item id="P2" koid="2" stid="1000" rekoid="R1" pokal="true"/>
+			<item id="P4" koid="4" stid="1000" rekoid="R1" pokal="true"/>
+			<item id="P8" koid="8" stid="1000" rekoid="R2" pokal="true"/>
+
+			<!-- Kinder Rennen 1er, 2er, 4er, 8er -->
+			<item id="J1" koid="J1" stid="1000" rekoid="R1" rgm="false"/>
+			<item id="J2" koid="J2" stid="1000" rekoid="R1" rgm="false"/>
+			<item id="J4" koid="J4" stid="1000" rekoid="R2" rgm="false"/>
+		</klassen>
+
+		<!-- liste aller verwendeten Datumsangaben im Format
+			YYYYMMDD oder YYYYMMDDTHHMM -->
+		<datumsliste>
+			<item id="regattatag1">20031003</item>
+			<item id="regattatag2">20031004T0900</item>
+			<item id="auslosung">20030924T1900</item>
+			<item id="meldeschluss">20030924T1800</item>
+		</datumsliste>
+
+		<!-- liste aller rennen. id ist die nr des rennens -->
+		<!-- generell: Die genaue Rennbezeichnung ergibt sich aus <bez/>, dem klassenattribut lgw und
+		der Leistungsklasse -->
+		<rennliste>
+			<rennen id="1" klid="2">
+				<!-- klid = id der verwendeten klasse, in diesem fall "normale rennen 2x" -->
+				<bez>SM A 2x</bez>
+				<!-- Kombination der Leistunsgklassen -->
+				<leistungsklassen>
+					<item>I</item>
+				</leistungsklassen>
+				<bemerkung/>
+			</rennen>
+			<rennen id="2" klid="2" koid="8">
+				<!--koid = kostenid -> rennen ist so teuer wie ein 8er -->
+				<bez>SF A 2x</bez>
+				<leistungsklassen>
+					<item>I</item>
+					<item>III</item>
+				</leistungsklassen>
+				<bemerkung/>
+			</rennen>
+		</rennliste>
+
+		<!-- Liste aller Personen und Adressen auf die im Dokument verwiesen wird -->
+		<personen>
+			<item id="meldeschluss">
+				<vCard:FN>Axel Lang</vCard:FN>
+				<vCard:N>
+					<vCard:Family>Lang</vCard:Family>
+					<vCard:Given>Axel</vCard:Given>
+				</vCard:N>
+				<vCard:ADR>
+					<vCard:Street>Forsterstraße 44</vCard:Street>
+					<vCard:Locality>Mainz</vCard:Locality>
+					<vCard:Pcode>55118</vCard:Pcode>
+				</vCard:ADR>
+				<vCard:TEL vcard:TYPE="http://www.w3.org/2001/vcard-rdf/3.0#work">
+					+49 6131 234449
+				</vCard:TEL>
+				<vCard:TEL vcard:TYPE="http://www.w3.org/2001/vcard-rdf/3.0#fax">
+					+49 6131 234449
+				</vCard:TEL>
+				<vCard:EMAIL vcard:TYPE="http://www.w3.org/2001/vcard-rdf/3.0#internet">
+					meldung@suedwestdeutsche2003.de
+	           		</vCard:EMAIL>
+				<vCard:ORG>
+					<vCard:Orgname>Mainzer Ruder-Verein von 1878 e.V.</vCard:Orgname>
+					<vCard:Orgunit>Meldung</vCard:Orgunit>
+				</vCard:ORG>
+				<vCard:URL>http://www.suedwestdeutsche2003.de</vCard:URL>
+				<vCard:URL>http://www.mainzerruderverein.de</vCard:URL>
+				<!-- alle weiteren vCard tags für Adresse etc. -->
+			</item>
+			<item id="auslosung">
+				<vCard:FN>Bootshaus Mainzer Ruder-Verein von 1878 e.V.</vCard:FN>
+				<vCard:ADR>
+					<vCard:Street>Winterhafen 22</vCard:Street>
+					<vCard:Locality>Mainz</vCard:Locality>
+					<vCard:Pcode>55130</vCard:Pcode>
+				</vCard:ADR>
+				<vCard:ORG>
+					<vCard:Orgname>Mainzer Ruder-Verein von 1878 e.V.</vCard:Orgname>
+					<vCard:Orgunit>Startverlosung</vCard:Orgunit>
+				</vCard:ORG>
+				<vCard:TEL vcard:TYPE="http://www.w3.org/2001/vcard-rdf/3.0#work">
+					+49 6131 234449
+				</vCard:TEL>
+				<vCard:TEL vcard:TYPE="http://www.w3.org/2001/vcard-rdf/3.0#fax">
+					+49 6131 234449
+				</vCard:TEL>
+				<!-- alle weiteren vCard tags für Adresse etc. -->
+			</item>
+		</personen>
+		<!-- ============================================================================ -->
+		<!-- ENDE DER LISTEN -->
+		<!-- ============================================================================ -->
+
+		<!-- ============================================================================ -->
+		<!-- BEGINN DER METADATEN -->
+		<!-- ============================================================================ -->
+		<!-- Metainformationen über dieses Dokument nach DublinCore.
+		Infos unter http://uk.dublincore.org/documents/1999/07/02/dces/ -->
+		<dc:title>
+			Ausschreibung
+		</dc:title>
+		<dc:subject>
+			Ausschreibung, Südwestdeutsche Meisterschaft, Mainz, 2003
+		</dc:subject>
+		<dc:description>
+			Ausschreibung für die Südwestdeutsche Meisterschaft 2003 in Mainz
+		</dc:description>
+		<dc:description xml:lang="en">
+			Beschreibung in anderen Sprachen (hier english)
+		</dc:description>
+		<dc:publisher>
+			Tammo van Lessen, Mainzer Ruder-Verein
+		</dc:publisher>
+		<dc:identifier xsi:type="dcterms:URI">
+			http://www.suedwestdeutsche2003.de/auschreibung.xml
+		</dc:identifier>
+		<dcterms:modified xsi:type="dcterms:W3CDTF">
+			2003-03-18
+		</dcterms:modified>
+		<dc:date>2003-03-18</dc:date>
+		<dc:format xsi:type="dcterms:IMT">
+			text/xml
+		</dc:format>
+	</regatta>
+</ausschreibung>
