@@ -125,8 +125,8 @@ public abstract class AbstractPerson {
 	  */
 	public void setFullName(String name){
 		int split = name.indexOf(" ");
-		firstName = name.substring(0,split);
-		name = name.substring(split+1,name.length());
+		this.firstName = name.substring(0,split);
+		this.name = name.substring(split+1,name.length());
 	}
 
 	/**

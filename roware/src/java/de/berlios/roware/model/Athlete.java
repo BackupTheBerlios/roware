@@ -26,7 +26,7 @@ import java.util.Date;
  * Athlete
  * 
  * @author Tammo van Lessen
- * @version $Id: Athlete.java,v 1.5 2003/07/15 16:02:40 jpraetorius Exp $
+ * @version $Id: Athlete.java,v 1.6 2003/07/23 16:53:09 jpraetorius Exp $
  */
 public class Athlete extends Participant {
 
@@ -38,7 +38,11 @@ public class Athlete extends Participant {
 	 * TODO Athlete Constructors
 	 */
 	public Athlete() {
-		
+		super();
+	}
+	
+	public Athlete(String name){
+		super(name);
 	}
 	
 	/**

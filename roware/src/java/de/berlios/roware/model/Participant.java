@@ -29,7 +29,7 @@ import java.util.GregorianCalendar;
  * Participant - Superclass for all Persons Participating in Competitions organzied with roware.
  * 
  * @author Tammo van Lessen
- * @version $Id: Participant.java,v 1.4 2003/07/15 16:02:40 jpraetorius Exp $
+ * @version $Id: Participant.java,v 1.5 2003/07/23 16:53:09 jpraetorius Exp $
  * 
  * TODO: Add  hashcode()!
  */
@@ -57,18 +57,22 @@ public abstract class Participant extends AbstractPerson {
 	public static final int MASTERS_G = 15;
 	public static final int MASTERS_H = 16;
 	
-	private int gender;
-	private long id;
-	private Date birthday;
+	private int gender = 0;
+	private long id = 0;
+	private Date birthday = null;
+	private Club club = null;
 	
 	/**
 	 * Constructor
 	 */
 	public Participant() {
-		gender = 0;
-		id = 0;
-		birthday = null;
+		super();
 	}
+	
+	public Participant(String name){
+		super(name);
+	}
+	
 	
 	/**
 	 * Constructor
@@ -78,8 +82,7 @@ public abstract class Participant extends AbstractPerson {
 	public Participant(int gender, String name){
 		super(name);
 		this.gender = gender;
-		id=0;
-		birthday=null;
+		
 	}
 	
 	/**
@@ -88,8 +91,6 @@ public abstract class Participant extends AbstractPerson {
 	public Participant(String name, String firstName, int gender){
 		super(name, firstName);
 		this.gender = gender;
-		id=0;
-		birthday=null;
 	}
 
 	public void setId(long id) {
@@ -164,5 +165,13 @@ public abstract class Participant extends AbstractPerson {
 			//TODO: In general this IS right, but what about masters ???
 			default: return SENIOR_A;
 		}		
+	}
+	
+	public void setClub (Club c){
+		club = c;
+	}
+	
+	public Club getClub(){
+		return club;
 	}
 }

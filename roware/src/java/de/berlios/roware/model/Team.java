@@ -26,14 +26,13 @@ import java.util.List;
  * Team
  * 
  * @author Tammo van Lessen
- * @version $Id: Team.java,v 1.7 2003/07/15 16:02:40 jpraetorius Exp $
+ * @version $Id: Team.java,v 1.8 2003/07/23 16:53:09 jpraetorius Exp $
  * 
  * TODO: Add equals() and hashcode()!!!!!!!!! 
  */
 public class Team {
 
 	private long id;
-
 	private List athletes = new ArrayList();
  
 	/**

@@ -27,7 +27,7 @@ package de.berlios.roware.model;
  */
 public abstract class Official extends AbstractPerson {
 
-	private Club club;
+	private Club club = null;
 	
 	public void setClub(Club c){
 		club = c;
