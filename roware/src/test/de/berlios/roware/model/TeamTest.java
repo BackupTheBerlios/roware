@@ -21,6 +21,9 @@
 package de.berlios.roware.model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -51,25 +54,34 @@ public class TeamTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
+		Calendar c = new GregorianCalendar();
+		c.set(1990,0,1);
+		Date d = c.getTime(); 
+		
 		ath1 = new Athlete("John Doe");
 		ath1.setWeight(70);
 		ath1.setGender(Boat.MALE);
+		ath1.setBirthday(d);
 		
 		ath2 = new Athlete("Foo Bar");
 		ath2.setWeight(70);
 		ath2.setGender(Boat.MALE);
+		ath2.setBirthday(d);
 		
 		ath3 = new Athlete("Max Muster");
 		ath3.setWeight(70);
 		ath3.setGender(Boat.MALE);
+		ath3.setBirthday(d);
 		
 		ath4 = new Athlete("Susi Sorglos");
 		ath4.setWeight(70);
 		ath4.setGender(Boat.FEMALE);
+		ath4.setBirthday(d);
 		
 		ath5 = new Athlete("Rainer Zufall");
 		ath5.setWeight(70);
 		ath5.setGender(Boat.MALE);
+		ath5.setBirthday(d);
 		
 		team = new Team();
 		team.addAthlete(ath1);
@@ -127,6 +139,6 @@ public class TeamTest extends TestCase {
 	
 	}
 	public void testGetAge() {
-		assertEquals(Boat.SENIOR_A,team.getAge());
+		assertEquals(Boat.CHILDREN_13,team.getAge());
 	}
 }
