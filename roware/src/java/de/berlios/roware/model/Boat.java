@@ -126,7 +126,7 @@ public class Boat implements Checkable {
 	}
 	
 	public void setTeam(Team team) throws IncompatibleTeamException {
-		if (team.getAthletes().length != seats) {
+		if (team.getAthletes().size() != seats) {
 			throw new IncompatibleTeamException(this, team);
 		}
 		this.team = team;

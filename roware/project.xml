@@ -32,7 +32,7 @@
 
 	<package>de.berlios.roware</package>
 	<!-- a short description of what the project does -->
-	<shortDescription>Webbasierte Komplettlösung für den Rudersport</shortDescription>
+	<shortDescription>Webbasierte Komplettl?sung f?r den Rudersport</shortDescription>
 
 	<issueTrackingUrl>http://developer.berlios.de/support/?group_id=716</issueTrackingUrl>
 	
@@ -129,19 +129,110 @@
 	</developers>
 
 	<dependencies>
+		<!-- commons -->
 		<dependency>
 			<id>commons-configuration</id>
 			<version>1.0-dev-3.20030603.101200</version>
 		</dependency>
+		<!-- turbine deps -->
 		<dependency>
 			<id>turbine</id>
 			<version>2.2</version>
+			<properties>
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
 		</dependency>
+		<!-- hibernate deps -->
+		<dependency>
+			<id>hibernate</id>
+			<version>2.0-final</version>
+			<properties>
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
+		</dependency>
+		<dependency>
+			<id>hibernate:hibernate-avalon</id>
+			<version>0.1</version>
+			<properties>        
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>              
+		</dependency>  
+		<dependency>
+			<id>dom4j</id>      
+			<version>1.4</version>
+			<properties>        
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
+		</dependency>       
+		<dependency>
+			<id>cglib</id>      
+			<version>rc2-1.0</version>
+			<properties>        
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
+		</dependency>                          
+		<dependency>
+			<id>jcs</id>      
+			<version>1.0-dev</version>
+			<properties>        
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
+		</dependency>
+		<dependency>
+			<id>bcel</id>      
+			<version>5.0</version>
+			<properties>        
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
+		</dependency>
+		<dependency>
+			<id>commons-beanutils</id>      
+			<version>1.6.1</version>
+			<properties>        
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
+		</dependency>
+		<dependency>
+			<id>commons-collections</id>      
+			<version>2.1</version>
+			<properties>        
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
+		</dependency>
+		<dependency>
+			<id>commons-lang</id>      
+			<version>1.0.1</version>
+			<properties>        
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
+		</dependency>
+		<dependency>
+			<id>commons-logging</id>      
+			<version>1.0.3</version>
+			<properties>        
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
+		</dependency>
+		<dependency>
+			<id>odmg</id>      
+			<version>3.0</version>
+			<properties>        
+				<war.bundle.jar>true</war.bundle.jar>
+			</properties>
+		</dependency>
+		
+		<!-- dev deps -->
 		<dependency>
 			<id>junit</id>
 			<version>3.8.1</version>
 			<url>http://www.junit.org/</url>
 		</dependency>
+		<!-- db deps -->
+		<dependency>
+			<id>mysql:mysql-connector-java</id>
+			<version>3.0.8-stable-bin</version>
+		</dependency>
+
 	</dependencies>
 	<!-- build information for the project -->
 	<build>
@@ -150,11 +241,11 @@
 
 	<unitTest>
 		<includes>
-		<include>**/*Test.java</include>
+			<include>**/*Test.java</include>
 		</includes>
-		<excludes>
+		<!-- <excludes>
 		<exclude>**/NaughtyTest.java</exclude>
-		</excludes>
+		</excludes> -->
 	</unitTest>
 
 	<resources>

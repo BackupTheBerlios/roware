@@ -6,5 +6,17 @@
     <classpathentry kind="var" path="MAVEN_REPO/commons-configuration/jars/commons-configuration-1.0-dev-3.20030603.101200.jar"/>
     <classpathentry kind="var" path="MAVEN_REPO/turbine/jars/turbine-2.2.jar"/>
     <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="var" path="MAVEN_REPO/dom4j/jars/dom4j-1.4.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/hibernate/jars/hibernate-2.0-final.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/hibernate/jars/hibernate-avalon-0.1.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/jcs/jars/jcs-1.0-dev.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/cglib/jars/cglib-rc2-1.0.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/mysql/jars/mysql-connector-java-3.0.8-stable-bin.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/commons-lang/jars/commons-lang-1.0.1.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/commons-logging/jars/commons-logging-1.0.3.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/commons-beanutils/jars/commons-beanutils-1.6.1.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/commons-collections/jars/commons-collections-2.1.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/bcel/jars/bcel-5.0.jar"/>
+    <classpathentry kind="var" path="MAVEN_REPO/odmg/jars/odmg-3.0.jar"/>
     <classpathentry kind="output" path="target/classes"/>
 </classpath>

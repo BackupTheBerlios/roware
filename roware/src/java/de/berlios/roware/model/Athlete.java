@@ -24,7 +24,7 @@ package de.berlios.roware.model;
  * Athlete
  * 
  * @author Tammo van Lessen
- * @version $id: $
+ * @version $Id: Athlete.java,v 1.4 2003/07/10 22:29:34 vanto Exp $
  */
 public class Athlete extends Participant {
 
@@ -33,8 +33,8 @@ public class Athlete extends Participant {
 	/**
 	 * TODO Athlete
 	 */
-	public Athlete(int gender) {
-		super(gender, false);
+	public Athlete() {
+		super();
 	}
 	
 	/**

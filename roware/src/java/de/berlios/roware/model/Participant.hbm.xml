@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+   "-//Hibernate/Hibernate Mapping DTD//EN"
+   "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="de.berlios.roware.model.Participant" table="participant">
+        <id name="id" column="pid" type="long">
+            <generator class="native"/>
+        </id>
+		<discriminator column="subclass" type="string"/>
+        <property name="name" column="name"/>
+        <property name="gender" column="gender"/>
+        <property name="coach" column="isCoach"/>
+        <subclass name="de.berlios.roware.model.Athlete" discriminator-value="Athlete">
+        	<property name="weight" column="weight"/>
+    	</subclass>
+        
+    </class>
+
+</hibernate-mapping>
+<!-- parsed in 0ms -->

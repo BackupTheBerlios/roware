@@ -54,22 +54,22 @@ public class BoatRule extends AbstractRule {
 			Boat boat = (Boat)obj;
 			if (!boat.isVirtual()) {
 				if ((boat.getType() == Boat.SINGLE_SCULLS)
-					&& (boat.getTeam().getAthletes().length) != 1) {
+					&& (boat.getTeam().getAthletes().size()) != 1) {
 					msg = I18n.tr("In einem Einer muss genau eine Person sitzen");
 				} else if ((boat.getType() == Boat.DOUBLE_SCULLS)
-							&& (boat.getTeam().getAthletes().length) != 2) {
+							&& (boat.getTeam().getAthletes().size()) != 2) {
 					msg = I18n.tr("In einem Zweier müssen genau 2 Person sitzen");
 				} else if ((boat.getType() == Boat.QUADRUPPLE_SCULLS)
-							&& (boat.getTeam().getAthletes().length) != 4) {
+							&& (boat.getTeam().getAthletes().size()) != 4) {
 					msg = I18n.tr("In einem Vierer müssen genau 4 Person sitzen");
 				} else if ((boat.getType() == Boat.PAIRS)
-							&& (boat.getTeam().getAthletes().length) != 2) {
+							&& (boat.getTeam().getAthletes().size()) != 2) {
 					msg = I18n.tr("In einem Zweier müssen genau 2 Person sitzen");
 				} else if ((boat.getType() == Boat.FOURS)
-							&& (boat.getTeam().getAthletes().length) != 4) {
+							&& (boat.getTeam().getAthletes().size()) != 4) {
 					msg = I18n.tr("In einem Vierer müssen genau 4 Person sitzen");
 				} else if ((boat.getType() == Boat.EIGHTS_COXED)
-							&& (boat.getTeam().getAthletes().length) != 8) {
+							&& (boat.getTeam().getAthletes().size()) != 8) {
 					msg = I18n.tr("In einem Achter müssen genau 8 Person sitzen");
 				}
 				

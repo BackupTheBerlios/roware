@@ -26,29 +26,41 @@ import java.util.List;
  * Team
  * 
  * @author Tammo van Lessen
- * @version $id: $
+ * @version $Id: Team.java,v 1.6 2003/07/10 22:29:34 vanto Exp $
+ * 
+ * TODO: Add equals() and hashcode()!!!!!!!!! 
  */
 public class Team {
 
-	private List athletes = new ArrayList();
+	private long id;
 
+	private List athletes = new ArrayList();
+ 
 	/**
 	 * TODO Team
 	 */
 	public Team() {
 	}
 	
-	public void addAthlete(Athlete ath) {
-		athletes.add(ath);
+	public void setId(long id) {
+		this.id = id;
 	}
 	
-	public Athlete[] getAthletes() {
-		return (Athlete[])athletes.toArray(new Athlete[0]);
+	public long getId() {
+		return id;
+	}
+	
+	public Athlete getAthlete(int index) {
+		return (Athlete)athletes.get(index);
+	}
+	
+	public List getAthletes() {
+		return athletes;
+		//return (Athlete[])athletes.toArray(new Athlete[0]);
 	}
 
-	
-	public void removeAthlete(Athlete ath) {
-		athletes.remove(ath);
+	public void setAthletes(List aths) {
+		athletes = aths;
 	}
 
 	/**

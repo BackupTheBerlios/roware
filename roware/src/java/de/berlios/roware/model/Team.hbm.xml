@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+   "-//Hibernate/Hibernate Mapping DTD//EN"
+   "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="de.berlios.roware.model.Team" table="team">
+        <id name="id" column="tid" type="long">
+            <generator class="native"/>
+        </id>
+		<list name="athletes" table="team_athletes" cascade="all">
+		    <key column="team_id"/>
+		    <index column="seat"/>
+		    <many-to-many column="ath_id" class="de.berlios.roware.model.Athlete"/>
+		</list>
+
+<!--		<collection name="athletes" column="aths_id" role="athletes"/>
+
+
+        <set name="athletes" table="team_athlete" cascade="all">
+		  <key column="team_id"/>
+		  <index-many-to-many column="node2_id" class="Node"/> 
+		  <many-to-many column="ath_id" class="de.berlios.roware.model.Team"/>
+        </set> -->
+    </class>
+
+</hibernate-mapping>
+<!-- parsed in 10ms -->

@@ -24,7 +24,9 @@ package de.berlios.roware.model;
  * Participant
  * 
  * @author Tammo van Lessen
- * @version $id: $
+ * @version $Id: Participant.java,v 1.3 2003/07/10 22:29:34 vanto Exp $
+ * 
+ * TODO: Add equals() and hashcode()!!!!!!!!!
  */
 public abstract class Participant extends AbstractPerson {
 
@@ -32,16 +34,31 @@ public abstract class Participant extends AbstractPerson {
 	public static final int FEMALE = 2;
 	
 	private int gender;
+	private String name;
+	private long id;
 	private boolean coach = false;
+	
 	/**
 	 * TODO Participant
 	 */
 	public Participant() {
 	}
 
-	public Participant(int gender, boolean coach) {
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	public long getId() {
+		return id;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
 	/**
 	 * @return
 	 */
