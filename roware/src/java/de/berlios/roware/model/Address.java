@@ -20,6 +20,12 @@
  */
 package de.berlios.roware.model;
 
+
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * Models an Address any Individual can have. It's possible to attach a 'type' to the different fields so it's possible to distinguish between private and Work Adresses
  * 
@@ -35,26 +41,24 @@ public class Address {
 	public static final int PHONE_PRIVATE = 4;
 	public static final int PHONE_MOBILE = 5;
 	public static final int EMAIL_OFFICE = 6;
-	public static final int EMAIL_PRIVATE = 7; 
-
+	public static final int EMAIL_PRIVATE = 7;
 
 	//Data Members
 	private String street = null;
 	private String zip = null;
 	private String city = null;
 	private String country = null;
-	private String phoneNumber = null;
-	private String emailAdress = null;
+	private List phoneNumbers = new ArrayList();
+	private List emailAdresses = new ArrayList();
 	private int type = 0;
 	private int phoneType = 0;
 	private int emailType = 0;
-		
+
 	/**
 	 *Address Constructor
 	 */
-	public Address() {
-	}
-	
+	public Address() {}
+
 	/**
 	 * Constructor for an Address with Snail-Mail Data
 	 * @param street The Street of the Address
@@ -63,13 +67,13 @@ public class Address {
 	 * @param type The Type of the Address, as defined in Address.
 	 * TODO Maybe we should use regexps throughout this Object for sanity?
 	 */
-	public Address(String street, String zip, String city,int type){
-			this.street = street;
-			this.zip = zip;
-			this.city = city;
-			this.type = type;
+	public Address(String street, String zip, String city, int type) {
+		this.street = street;
+		this.zip = zip;
+		this.city = city;
+		this.type = type;
 	}
-	
+
 	/**
 	 * Constructor for an Address with Snail-Mail and Phone Data
 	 * @param street The Street of the Address
@@ -79,15 +83,20 @@ public class Address {
 	 * @param phone The Phone Number
 	 * @param phoneType the Type of the PhoneNumber
 	 */
-	public Address(String street, String zip,String city, int type, String phone, int phoneType){
+	public Address(
+		String street,
+		String zip,
+		String city,
+		int type,
+		String phone,
+		int phoneType) {
 		this.street = street;
 		this.zip = zip;
 		this.city = city;
 		this.type = type;
-		this.phoneNumber = phone;
-		this.phoneType = phoneType;
+		addPhoneNumber(new PhoneNumber(phone, phoneType));
 	}
-	
+
 	/**
 	 * Constructor for an Address with complete Data (i.e. Snail-Mail, Phone and E-Mail)
 	 *@param street The Street of the Address
@@ -99,16 +108,22 @@ public class Address {
 	 * @param email The E-Mail Address
 	 * @param emailType the Type of the E-Mail-Address
 	 */
-	public Address(String street, String zip,String city, int type, String phone, int phoneType, String email, int emailType){
-			this.street = street;
-			this.zip = zip;
-			this.city = city;
-			this.type = type;
-			this.phoneNumber = phone;
-			this.phoneType = phoneType;
-			this.emailAdress = email;
-			this.emailType = emailType;
-		}
+	public Address(
+		String street,
+		String zip,
+		String city,
+		int type,
+		String phone,
+		int phoneType,
+		String email,
+		int emailType) {
+		this.street = street;
+		this.zip = zip;
+		this.city = city;
+		this.type = type;
+		addPhoneNumber(new PhoneNumber(phone, phoneType));
+		addEMailAddress(new EMail(email, emailType));
+	}
 
 	/**
 	 * @return The City
@@ -125,24 +140,10 @@ public class Address {
 	}
 
 	/**
-	 * @return The E-Mail Address
-	 */
-	public String getEmailAdress() {
-		return emailAdress;
-	}
-
-	/**
 	 * @return The Type of the E-Mail Address
 	 */
 	public int getEmailType() {
 		return emailType;
-	}
-
-	/**
-	 * @return The Phone Number
-	 */
-	public String getPhoneNumber() {
-		return phoneNumber;
 	}
 
 	/**
@@ -188,24 +189,10 @@ public class Address {
 	}
 
 	/**
-	 * @param string The E-Mail-Address (e.g. "john@doe.com")
-	 */
-	public void setEmailAdress(String string) {
-		emailAdress = string;
-	}
-
-	/**
 	 * @param i the Type of the E-Mail-Address (may be one of EMAIL_OFFICE or EMAIL_PRIVATE)
 	 */
 	public void setEmailType(int i) {
 		emailType = i;
-	}
-
-	/**
-	 * @param string The Phone Number (e.g. "+49 (0)30 123 45 67)
-	 */
-	public void setPhoneNumber(String string) {
-		phoneNumber = string;
 	}
 
 	/**
@@ -216,7 +203,7 @@ public class Address {
 	}
 
 	/**
-	 * @param string the Name of the Street (e.g. "Hauptstraﬂe")
+	 * @param string the Name of the Street (e.g. "Hauptstra√üe")
 	 */
 	public void setStreet(String string) {
 		street = string;
@@ -234,6 +221,68 @@ public class Address {
 	 */
 	public void setZip(String string) {
 		zip = string;
+	}
+
+	/**
+	 * Method addPhoneNumber.
+	 * @param phone
+	 * @param phoneType
+	 */
+	public void addPhoneNumber(PhoneNumber p) {
+		phoneNumbers.add(p);
+	}
+
+	/**
+	 * Method addEmailAddress
+	 * @param email An EMailAddress
+	 * */
+	public void addEMailAddress(EMail e) {
+		emailAdresses.add(e);
+	}
+
+	/**
+	 * Returns all EMail Addresses assigned to this Address..
+	 * @return List
+	 */
+	public List getEMailAdresses() {
+		return emailAdresses;
+	}
+
+	/**
+	 * Returns all EMail Addreses of Type <code>type</code> 
+	 * If no such EMail Addresses are stored in this Address the returned List
+	 * is empty
+	 * @param type The Type of EMail Addresses to search for
+	 * @return List
+	 */
+	public List getEMailAdresses(int type) {
+		List result = new ArrayList();
+		Iterator it = emailAdresses.iterator();
+		EMail e;
+		while (it.hasNext()) {
+			e = (EMail) it.next();
+			if (e.getType() == type) {
+				result.add(e);
+			}
+		} //while
+		return result;
+	} //getEMByType
+
+	public List getPhoneNumbers() {
+		return phoneNumbers;
+	}
+
+	public List getPhoneNumbers(int type) {
+		List result = new ArrayList();
+		Iterator it = emailAdresses.iterator();
+		PhoneNumber p;
+		while (it.hasNext()) {
+			p = (PhoneNumber) it.next();
+			if (p.getType() == type) {
+				result.add(p);
+			}
+		} //while
+		return result;
 	}
 
 }
