@@ -56,8 +56,12 @@ public class RulesManager {
 		rules.remove(rule.getClass().getName());
 	}
 	
-	public AbstractRule getRuleByName(String name) {
-		return (AbstractRule) rules.get(name);
+	public AbstractRule getRuleByName(String name) throws RuleNotFoundException {
+		AbstractRule rl = (AbstractRule) rules.get(name);
+		if (rl == null) {
+			throw new RuleNotFoundException(name);
+		}
+		return rl;
 	}
 	
 	/**
@@ -81,8 +85,8 @@ public class RulesManager {
 		return;
 	}
 	
-	public void check(Checkable object, String rule) throws RuleViolationException {
-		AbstractRule rl = (AbstractRule) rules.get(rule);
+	public void check(Checkable object, String rule) throws RuleViolationException, RuleNotFoundException {
+		AbstractRule rl = getRuleByName(rule);
 		rl.check(object);
 	}
 }

@@ -17,52 +17,24 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- */package de.berlios.roware.model;
+ */
+package de.berlios.roware.model.rule;
 
-import java.util.List;
+import de.berlios.roware.i18n.I18n;
 
 /**
- * Team
+ * RuleNotFoundException
  * 
  * @author <a href="mailto:vanto@users.berlios.de">Tammo van Lessen</a>
- * @version $id:$
+ * @version $id$
  */
-public class Team {
-
-	private List athletes;
+public class RuleNotFoundException extends Exception {
 
 	/**
-	 * TODO Team
+	 * @param rule rules name
 	 */
-	public Team() {
-	}
-	
-	public void addAthlete(Athlete ath) {
-		athletes.add(ath);
-	}
-	
-	public Athlete[] getAthletes() {
-		return (Athlete[])athletes.toArray();
+	public RuleNotFoundException(String rule) {
+		super(I18n.tr("Rule {0} is not registered", rule));
 	}
 
-	
-	public void removeAthlete(Athlete ath) {
-		athletes.remove(ath);
-	}
-
-	/**
-	 * returns the average weight. 0 means unkown.
-	 * @return
-	 */
-	public int getAverageWeight() {
-		Athlete[] aths = (Athlete[])athletes.toArray();
-		int sum = 0;
-		for (int i = 0; i < aths.length; i++) {
-			if (aths[i].getWeight() == 0) {
-				return 0;
-			}
-			sum += aths[i].getWeight();
-		}
-		return Math.round(sum / aths.length);
-	}
 }

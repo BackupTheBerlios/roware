@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import de.berlios.roware.model.rule.Checkable;
+import de.berlios.roware.model.rule.RuleNotFoundException;
 import de.berlios.roware.model.rule.RuleViolationException;
 import de.berlios.roware.model.rule.RulesManager;
 
@@ -115,9 +116,15 @@ public class Boat implements Checkable {
 	 * @see de.berlios.roware.model.rule.Checkable#isValid()
 	 */
 	public void validate() throws RuleViolationException {
-		RulesManager.getInstance().check(this, "de.berlios.roware.model.rule.BoatRule");
-		if (isLightweight()) {
-			RulesManager.getInstance().check(this, "de.berlios.roware.model.rule.LightweightRule");
+		try {
+			RulesManager.getInstance().check(this, "de.berlios.roware.model.rule.BoatRule");
+			if (isLightweight()) {
+				RulesManager.getInstance().check(this, "de.berlios.roware.model.rule.LightweightRule");
+
+			}
+		} catch (RuleNotFoundException e) {
+			System.out.println(e.getMessage());
+			throw new RuleViolationException(e);
 		}
 	}
 

@@ -28,6 +28,7 @@ package de.berlios.roware.model.rule;
  */
 public class RuleViolationException extends Exception {
 
+
 	private AbstractRule rule;
 	private String message;
 
@@ -35,8 +36,16 @@ public class RuleViolationException extends Exception {
 	 * TODO AbstractRuleReport 
 	 */
 	public RuleViolationException(AbstractRule rule, String message) {
+		super(message);
 		this.rule = rule;
 		this.message = message;
+	}
+
+	/**
+	 * @param e
+	 */
+	public RuleViolationException(RuleNotFoundException e) {
+		super(e);		
 	}
 
 	public AbstractRule getRule() {
