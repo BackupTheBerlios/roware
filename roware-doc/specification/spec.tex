@@ -172,6 +172,11 @@ Das Produkt stellt dem Regattaveranstalter folgende Funktionen zur Verfügung
 \item Zielfotos hochladen
 \end{itemize}
 
+\subsection*{Informationen}
+\begin{itemize}
+\item Besuchern Renninformationen zur Verfügung stellen.
+\end{itemize}
+
 \chapter{Anforderungen}
 Die Anforderungen werden in Form von Anwendungsfällen (Use-Cases) erklärt.
 Sie beschreiben die Funktionalität des zu erstellenden Systems.
@@ -180,6 +185,7 @@ Sie beschreiben die Funktionalität des zu erstellenden Systems.
 \subsection{Benutzer}
 Vor der Anmeldung an das System sind haben alle Benutzer die gleiche Funktion und die gleichen Möglichkeiten (\textbf{AKT Benutzer}). Nach der Anmeldung ergibt sich durch das Rechtemanagment eine neue Situation, die Benutzer werden in weitere Gruppen mit unterschiedlichen Rechten aufgeteilt.
 \begin{itemize}
+\item Systemverwalter (Einrichtung von \roware, Verwalten der Nutzer) (\textbf{AKT Sysadmin})
 \item Benutzer bei Regattaverwaltung (Ausschreibung,Erfassung Meldungen, Ergebnisse) (\textbf{AKT Regatta})
 \item Benutzer im Regattabüro (\textbf{AKT Admin})
 \item Benutzer an der Kasse (\textbf{AKT Kasse})
@@ -200,22 +206,28 @@ Die hier beschriebenen Geschäftsprozesse beschreiben ausschließlich die Interakt
 	Danach bestätigt er 
 	mit \emph{Return} oder klickt auf \emph{OK}. Darauf hin wird das 
 	Passwort überprüft.}
-	{Der Benutzer ist nun angemeldet, es erscheint das Hauptfenster}
+	{Der Benutzer ist nun angemeldet, es erscheint das Hauptfenster, die Auswahlen, die der Nutzer treffen kann sind seiner Nutzerrolle (siehe Aktoren) angepasst}
 	{Es wird die Fehlermeldung ``Falsches Kennwort'' angezeigt, das 
 	Anmeldefenster bleibt angezeigt.}
 	{AKT Benutzer}
 
-\subsection {Ausschreibung erstellen}
-\usecase{Der Benutzer ist als \textbf{AKT Regatta} angemeldet}
-{Der Benutzer kann eine neue Regatta anlegen. Für diese kann er global Daten wie Termin, Austragungsort, Meldeschluß und Preise für die Rennen festlegen. Genauso sind die Kontaktdaten für die Meldung usw. anzugeben. Hierbei können vorhandene Personendaten aus einem Datenspeicher übernommen werden. Noch ungeklärte Daten müssen nicht sofort angegeben werden sondern können zu einem späteren Zeitpunkt ergänzt werden. Zur Identifizierung solcher Daten ist ein bestimmter Wert z.B. ``-'' vorzusehen. Danach kann der Nutzer beliebig viele Rennen anlegen, wobei zur Spezifizierung die folgenden Daten angegeben werden müssen: Bootsklasse, Leistungsklasse, Altersgruppe, Strecke. Ein mehrfaches Anlegen eines Rennens mit den \emph{gleichen} Daten ist nicht möglich. Die Reihenfolge der Rennen ist zu jeder Zeit veränderbar. Die Rennen unter der Stelle, an der ein verschobenes Rennen eingefügt wird, werden nach unten verschoben.
+\subsection{Als Gast anmelden}
+\usecase{Browser ist gestartet und zeigt aus http://ip-adresse/}
+{Gäste der Veranstatung können Informationen über das Regattageschehen bekommen. Insbesondere können sie Zeiten zu Rennen einsehen. Hierfür existiert auf der Anmeldeseite ein Link ``als Gast anmelden''. Danach ist der als AKT Gast angemeldet. Diese Nutzerrolle hat keine Rechte.}
+{Der Nutzer ist als AKT Gast angemeldet. In dieser Rolle kann der Zeiten von beendeten Rennen einsehen.}
+{Das Anmeldefenster wird angezeigt.}
+{AKT Benutzer}
 
+\subsection {Ausschreibung erstellen}
+\usecase{Der Benutzer ist als AKT Regatta angemeldet}
+{Der Benutzer kann eine neue Regatta anlegen. Für diese kann er global Daten wie Termin, Austragungsort, Meldeschluß und Preise für die Rennen festlegen. Genauso sind die Kontaktdaten für die Meldung usw. anzugeben. Hierbei können vorhandene Personendaten aus einem Datenspeicher übernommen werden. Noch ungeklärte Daten müssen nicht sofort angegeben werden sondern können zu einem späteren Zeitpunkt ergänzt werden. Zur Identifizierung solcher Daten ist ein bestimmter Wert z.B. ``-'' vorzusehen. Danach kann der Nutzer beliebig viele Rennen anlegen, wobei zur Spezifizierung die folgenden Daten angegeben werden müssen: Bootsklasse, Leistungsklasse, Altersgruppe, Strecke. Ein mehrfaches Anlegen eines Rennens mit den \emph{gleichen} Daten ist nicht möglich. Die Reihenfolge der Rennen ist zu jeder Zeit veränderbar. Die Rennen unter der Stelle, an der ein verschobenes Rennen eingefügt wird, werden nach unten verschoben.
 Ein nachträgliches bearbeiten der eingegebenen Daten ist zu jedem Zeitpunkt möglich. Die obigen Plausibilitätskontrollen werden jeweils neu getestet, so daß das System nur konsistente, sinnvolle Daten speichern kann.}
 {Die Veranstaltung wird mit den eingegebenen Daten gespeichert.}
 {Der Nutzer wird auf die Fehler in den eingegebenen Daten hingewiesen. Die Veranstaltung wird \textbf{nicht} gespeichert.}
 {AKT Regatta}
 
 \subsection {Ausschreibung veröffentlichen}
-\usecase{Der Benutzer ist als \textbf{AKT Regatta} angemeldet. Es existiert eine Ausschreibung ohne inhaltliche Fehler. Alle Veranstalterdaten der Ausschreibung sind ausgefüllt und nicht mit ``-'' gefüllt.}
+\usecase{Der Benutzer ist als AKT Regatta angemeldet. Es existiert eine Ausschreibung ohne inhaltliche Fehler. Alle Veranstalterdaten der Ausschreibung sind ausgefüllt und nicht mit ``-'' gefüllt.}
 {Eine abgeschlossene Ausschreibung kann durch den Nutzer veröffentlicht werden. Hierbei führt das System letzte Plausibilitäskontrollen an den eingegebenen Daten durch. Insbesondere müssen alle Daten die allgemein für die Regatta gelten ausgefüllt worden sein. Dann exportiert das System die relevanten Daten in verschiedene vom Nutzer wählbare Formate. Als Exportformate werden hierbei PDF, HTML und xregatta unterstützt. Diese Daten werden auch auf dem Server gehalten und können durch den Nutzer mittels des Browsers heruntergeladen werden. Eine veröffentlichte Ausschreibung kann nicht mehr verändert werden. Auf diesen Umstand soll der Nutzer vor der Veröffentlichung hingewiesen werden und sie explizit bestätigen müssen. Eine erneute Veröffentlichung in beliebigen der erwähnten Formate ist hingegen jederzeit möglich.}
 {Die Ausschreibung wird in den vom Nutzer gewählten Formaten veröffentlicht (Die Daten werden im passenden Format serialisiert). Eine Änderung der Ausschreibung ist nicht mehr möglich.}
 {Der Nutzer wird auf eventuelle Fehler in der Ausschreibung hingewiesen, die die Veröffentlichung verhindert haben (dazu gehört auch ein Abbruch des Nutzers bei dem Hinweis auf Unveränderbarkeit einer veröffentlichten Ausschreibung). Die Ausschreibung ist weiterhin änderbar, die Ausschreibungsdateien werden nicht erzeugt.}
@@ -256,7 +268,11 @@ Ein nachträgliches bearbeiten der eingegebenen Daten ist zu jedem Zeitpunkt mögl
 {AKT Admin}
 
 \subsection {Nachmeldung erfassen}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin angemeldet. Es existiert eine veröffentlichte Ausschreibung, zu der schon Meldedaten eingegeben worden sind.}
+{Der Nutzer kann aus einer Auswahl die Regatta auswählen, die er zu bearbeiten wünscht. Hierbei werden nur veröffentlichte Ausschreibungen berücksichtigt. Der Nutzer kann nun wählen, daß er eine Nachmeldung eingeben will. Nun wird ihm die Liste der Rennen der ausgewählten Regatta präsentiert. Wird aus dieser Liste ein Rennen ausgewählt, werden die bisher gemeldeten Boote und ihre Einteilung in Läufe angezeigt. Nun kann der Nutzer die nachgemeldete Mannschaft eintragen. Dazu muß er wie bei einer normalen Meldung den Verein und die Ruderer eintragen. Hierbei werden wieder die schon eingegebenen Vereine und Personen zur Übernahme angezeigt. Ist die nachgemeldete Mannschaft eingetragen, wird sie auch in der Übersicht bei der Verteilung auf die Läufe angezeigt. Eine Entscheidung, ob eine Nachmeldung stattfinden kann fällt der Nutzer (neu entstehende Abteilungen), die nachfolgende gleichmäßige Aufteilung auf Läufe führt das System durch.}
+{Die nachgemeldete Mannschaft ist in dem gewählten Rennen gemeldet, die zu startenden Abteilungen sind gleichmäßig groß.}
+{Die teilnehmenden Mannschaften und die Aufteilung in Abteilungen hat sich nicht verändert.}
+{AKT Admin}
 
 \subsection {Abmeldung erfassen}
 \usecase{}{TODO}{}{}{AKT Admin}
@@ -265,10 +281,18 @@ Ein nachträgliches bearbeiten der eingegebenen Daten ist zu jedem Zeitpunkt mögl
 \usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Jugendlizenzen erfassen}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin angemeldet.}
+{Der Nutzer kann auswählen, daß er Jugendlizenzen eingeben möchte. Hierbei stehen ihm verschiedene Möglichkeiten zur Verfügung. Zum einen kann er eine existierende Liste in elektronischer Form übernehmen \footnote{\emph{Hier sollte auch noch die Standardisierung eines Formates stattfinden, um den Schmerz möglichst klein zu halten. Ich weiß nicht, was die DRJ liefern kann, aber Excel pur ist vielleicht nicht so schön. Denkbar wäre, daß wir oder werow.com oder so die aktuelle Tabelle der DRJ bearbeiten und dann in einem passenden XML(?)-Format zur Verfügung stellen um den Nutzern diesen Schritt möglichst einfach zu machen.}} oder von Hand eingeben. Bei der Übernahme aus der elektronischen Liste werden die enthaltenen Daten wie bei der Erfassung elektronischer Meldedaten angezeigt und können dann übernommen werden. Bei der manuellen Erfassung sind die notwendigen Daten (Verein, Ruderer, Geburtsdatum \dots) vom Nutzer per Hand einzugeben. }
+{Neu übernommene Jugendlizenz Daten sind im System vorhanden und können zur Überprüfung genutzt werden.}
+{Die vorhandenen Daten werden nicht geändert.}
+{AKT Admin}
 
 \subsection {Jugendlizenzen kontrollieren}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin angemeldet. Es existiert eine veröffentlichte Ausschreibung, zu der schon Meldedaten eingegeben worden sind.}
+{Der Nutzer bekommt in einer Liste die Aktiven angezeigt, die ein Jugendlizenz vorlegen müssen. Für die jeweilige Veranstaltung (Ausschreibung) hat jeder Aktive ein Attribut JL, das anzeigt, ob eine gültige Jugendlizenz vorliegt, oder nicht. Per Klick kann der Nutzer einen automatischen Abgleich zwischen der Liste der zu kontrollierenden und den vorhandenen Jugendlizenzdaten vornehmen. Hierbei wird auf Gleichheit von Verein, Name und Geburtsjahr getestet. Ist eine entsprechende Lizenz vorhanden, wird das Attribut auf \texttt{true} gesetzt und der jeweilige Aktive taucht nicht mehr in der Liste der zu überprüfenden Personen auf. Wird eine bestimmte Peron ausgewählt (weil sie z.B. nicht in der Liste der Jugendlizenzen enthalten ist), so kann der Nutzer per Klick das JL-Attribut auf \texttt{true} setzen (z.B. bei Vorlage der JL). Hierbei werden die entsprechenden Daten des Aktiven auch in die Liste der JL Daten übernommen um bei späteren Veranstaltungen eine erneute manuelle Überprüfung zu vermeiden.}
+{Aktive deren Daten in der JL-Liste enthalten sind werden nicht mehr angezeigt. Aktive, bei denen dies manuell bestätigt wurde werden in die Liste übernommen.}
+{Die Liste der uz überprüfenden Aktiven ändert sich nicht.}
+{AKT Admin}
 
 \subsection {Schiedsrichtereinsatzplan erstellen}
 \usecase{}{TODO}{}{}{AKT Admin}
@@ -279,9 +303,7 @@ Ein nachträgliches bearbeiten der eingegebenen Daten ist zu jedem Zeitpunkt mögl
 \subsection {Waage erfassen}
 \usecase{Der Nutzer ist als AKT Admin oder AKT Waage angemeldet. Es existieren Meldungen zu LGW Rennen.}
 {Der Nutzer bekommt alle Meldungen zu LGW-Rennen bzw. Steuerleute nach Vereinen getrennt angezeigt. Wählt er eine bestimmte Person aus, werden außerdem die in Frage kommenden Rennen (Renn-Nr., Bezeichnung, Startzeit) angezeigt. Der Nutzer kann nun das bestimmte Gewicht des Aktiven eintragen. Den Check zu den Gewichtsgrenzen führt das System selbständig durch, da hier verschiedenen Grenzen für denselben Aktiven gelten können.}
-{Das Gewicht wird für den jeweiligen Aktiven gespeichert.
-
-\emph{Sollte hier ein Mehrfaches Editieren während eine Veranstaltung erlaubt sein, oder nicht??}}
+{Das Gewicht wird für den jeweiligen Aktiven gespeichert.\footnote{Sollte hier ein mehrfaches Editieren während eine Veranstaltung erlaubt sein, oder nicht??}}
 {Es werden keine Daten gespeichert.}
 {AKT Waage, AKT Admin}
 
@@ -312,10 +334,18 @@ Ein nachträgliches bearbeiten der eingegebenen Daten ist zu jedem Zeitpunkt mögl
 \usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Urkunden drucken}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin angemeldet. Es existieren Rennen in denen für alle Starter Zeiten eingetragen sind.}
+{Der Nutzer bekommt eine Liste aller abgeschlossenen Rennen angezeigt. Das sind die Rennen, in denen für alle Starter ein Ergebnis (entweder eine Zeit oder abgemeldet oder gekentert) vermerkt ist. Wählt der Nutzer ein bestimmtes Rennen aus, bekommt er die Rangfolge der gestarteten Mannschaften angezeigt. Diese wird vom System erzeugt. Hierbei findet die Sortierung in folgender Weise statt: Zeit -> gekentert -> Abmeldung. Innerhalb der letzten beiden Gruppen wird absteigend nach Startnummer sortiert. Für aus dieser Liste kann der Nutzer nun Mannschaften auswählen, für die Urkunden gedruckt werden sollen. Des weiteren kann der Nutzer ein Urkunden-Template auswählen, in das die Urkunden gedruckt werden sollen. Als Templates dienen hierbei HTML-Dateien, in die bestimmte Token eingebettet werden können (\#NAME, \#ZEIT, \#PLATZ usw.). Diese werden vom System durch die jeweiligen Daten der Mannschaft ersetzt. Solche HTML-Templates sind auch durch den Nutzer leicht zu erstellen und somit an seine Bedürfnisse anzupassen. Berücksichtigt werden alle Dateien in einem bestimmten Template-Verzeichnis, die möglichen Token werden vom \roware vorgegeben. Das System zeigt nun die Seiten mit den eingesetzten Daten an, so daß der Nutzer diese über die Druckfunktion des Browsers drucken kann. \footnote{Interessant wäre hier sicherlich auch PDF-Erzeugung, gerade wenn mehrere Seiten (Urkunden) auf einmal ausgegeben werden sollen}}
+{Die Urkunden werden mit den Daten der Mannschaften des gewählten Rennens in das gewählte Urkunden Template gedruckt.}
+{Es werden keine Daten gedruckt.}
+{AKT Admin}
 
 \subsection {Ergebnisse veröffentlichen}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin angemeldet. Alle Rennen der gewählten Veranstaltung sind abgeschlossen.}
+{Sind alle Rennen einer Veranstaltung abgeschlossen,d.h. für alle Starter ist ein Ergebnis (entweder eine Zeit oder abgemeldet oder gekentert) vermerkt oder ein Rennen ist als 'ausgefallen' markiert, kann der Nutzer das Ergebnis der Veranstaltung veröffentlichen. Hierbei wird nach Rennen sortiert die Rangfolge der gestarteten Mannschaften aufgeführt. Diese wird vom System erzeugt. Hierbei findet die Sortierung in folgender Weise statt: Zeit -> gekentert -> Abmeldung. Innerhalb der letzten beiden Gruppen wird absteigend nach Startnummer sortiert. Des weiteren werden der Name und das Datum der Veranstaltung aufgeführt. Dann exportiert das System die relevanten Daten in verschiedene vom Nutzer wählbare Formate. Als Exportformate werden hierbei PDF, HTML und xregatta unterstützt. Diese Daten werden auch auf dem Server gehalten und können durch den Nutzer mittels des Browsers heruntergeladen werden. } 
+{Das Ergebnis wird in den gewählten Formaten veröffentlicht.}
+{Es werden keine Daten veröffentlicht.}
+{AKT Admin}
 
 \subsection {Startberechtigung kontrollieren}
 \usecase{}{TODO}{}{}{AKT Start, AKT Admin}
@@ -343,7 +373,36 @@ Ein nachträgliches bearbeiten der eingegebenen Daten ist zu jedem Zeitpunkt mögl
 
 \subsection {Zielfotos hochladen}
 \usecase{}{TODO}{}{}{AKT Ziel, AKT Admin}
-TODO: Weitere Usecases?
+
+\subsection{Rennzeiten einsehen}
+\usecase{Der Nutzer ist als AKT Gast angemeldet. Es existieren Rennen, die schon beendet sind.}
+{Besucher der Veransatlung können Zeiten von abgeschlossenen Rennen einsehen. Hierfür wird dem Nutzer eine Liste der schon abgeschlossenen Rennen angezeigt. Das sind die Rennen, in denen für alle Starter ein Ergebnis (entweder eine Zeit oder abgemeldet oder gekentert) vermerkt ist. Wählt der Nutzer ein bestimmtes Rennen aus, bekommt er die Rangfolge der gestarteten Mannschaften angezeigt. Diese wird vom System erzeugt. Hierbei findet die Sortierung in folgender Weise statt: Zeit -> gekentert -> Abmeldung. Innerhalb der letzten beiden Gruppen wird absteigend nach Startnummer sortiert.}
+{Die gewählten Daten werden angezeigt.}
+{Keine}
+{AKT Gast}
+
+\subsection{Neue Nutzer anlegen}
+\usecase{Der Nutzer ist als AKT Sysadmin angemeldet.}
+{Um den Nutzern des Systems einen eigenen Login zur Verfügung zu stellen soll \roware Nutzer verwalten. Diese werden vom AKT Sysadmin angelegt. Hierbei wird der Nutzername, das Passwort und die Zugehörigkeit zu den möglichen Rollen im System eingetragen. Systemseitig existieren zwei Accounts fest, das sind ``Gast'' und ``Sysadmin''. Der Nutzer kann nun in einer Maske den Nutzernamen, das Passwort und die möglichen Gruppen des neuen Nutzers eintragen. Dabei ist ein Zugehörigkeit zu beliebig vielen Gruppen möglich.}
+{Der neu angelegte Nutzer ist im System gespeichert und kann sich anmelden.}
+{Es wird kein neuer Nutzer angelegt.}
+{AKT Sysadmin}
+
+\subsection{Nutzer bearbeiten}
+\usecase{Der Nutzer ist als AKT Sysadmin angemeldet. Es existieren Accounts für das System.}
+{Um Nutzer verwalten zu können müssen die Daten geändert werden können. Der Nutzer bekommt eine Liste der im System vorhandenen Nutzer angezeigt. Wählt er einen aus, bekommt er die Daten dieses Nutzers angezeigt. Diese können nun geändert und im System gespeichert werden.}
+{Die geänderten Daten sind im System übernommen.}
+{Die Daten des Nutzers werden nicht geändert. \footnote{Ich denke dies sollte z.B. passieren, wenn der geänderte Nutzer gerade angemeldet ist, das erspart ein paar fiese Zustandsüberprüfungen}}
+{AKT Sysadmin}
+
+\subsection{Nutzer löschen}
+\usecase{Der Nutzer ist als AKT Sysadmin angemeldet. Es existieren Accounts für das System.}
+{Der Ntuzer bekommt eine Liste der im System vorhandenen Nutzer angezeigt. Wählt er einen bestimmten aus, bekommt er die Daten angezeigt und kann diesen nach einer Bestätigung ``Wollen Sie das wirklich tun?'' löschen.}
+{Der gelöschte Nutzer ist nicht mehr im System vorhanden und kann sich mit seinen Daten nicht mehr anmelden.}
+{Die Daten des Nutzers werden nicht gelöscht. \footnote{wie darüber.}}
+{AKT Sysadmin}
+
+%TODO: Weitere Usecases?
 %-------------------------------------------------------------------------
 \chapter{Nichtfunktionale Anforderungen}
 \section{Leistungsanforderungen}
