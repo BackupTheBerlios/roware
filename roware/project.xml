@@ -128,6 +128,12 @@
 		</developer>
 	</developers>
 
+	<dependencies>
+		<dependency>
+			<id>commons-configuration</id>
+			<version>1.0-dev-3.20030603.101200</version>
+		</dependency>
+	</dependencies>
 	<!-- build information for the project -->
 	<build>
 	<sourceDirectory>${basedir}/src/java</sourceDirectory>

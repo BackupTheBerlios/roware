@@ -76,6 +76,10 @@ public class Boat implements Checkable {
 		return type;
 	}
 	
+	public void setType(int type) {
+		this.type = type;
+	}
+	
 	public void setTeam(Team team) {
 		this.team = team;
 	}

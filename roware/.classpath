@@ -5,6 +5,8 @@
   </classpathentry>
   <classpathentry kind="var" rootpath="JRE_SRCROOT" path="JRE_LIB" sourcepath="JRE_SRC">
   </classpathentry>
+  <classpathentry kind="var" path="MAVEN_REPO/commons-configuration/jars/commons-configuration-1.0-dev-3.20030603.101200.jar">
+  </classpathentry>
   <classpathentry kind="output" path="target/classes">
   </classpathentry>
 </classpath>
