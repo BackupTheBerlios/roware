@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+
+	<!-- the version of maven's project object model -->
+	<pomVersion>3</pomVersion>
+
+	<!-- a unique name for this project -->
+	<id>roware</id>
+
+	<!-- a short but descriptive name for the project -->
+	<name>row@re</name>
+
+	<!-- The version of the project under development, e.g.
+		1.1, 1.2, 2.0-dev -->
+	<currentVersion>0.1-SNAPSHOT</currentVersion>
+
+	<!-- details about the organization that 'owns' the project -->
+	<organization>
+	<name>roware team</name>
+	<url>http://roware.berlios.de/</url>
+	</organization>
+
+	<!-- the year the project started -->
+	<inceptionYear>2002</inceptionYear>
+
+	<!-- the top level of java packages that this project defines
+		e.g. if your project contains the packages
+		com.mycompany.accounts.reports, com.mycompany.accounts.reports
+		and com.mycompany.accounts.utils, the package would be
+		'com.mycompany.accounts' -->
+	<package>org.apache.maven.examples.simplewebapp</package>
+
+	<package>de.berlios.roware</package>
+	<!-- a short description of what the project does -->
+	<shortDescription>Webbasierte Komplettlösung für den Rudersport</shortDescription>
+
+	<issueTrackingUrl>http://developer.berlios.de/support/?group_id=716</issueTrackingUrl>
+	
+	<siteAddress>shell.berlios.de</siteAddress>
+	<siteDirectory>/home/groups/roware/htdocs/</siteDirectory>
+	<distributionDirectory>/home/groups/ftp/pub/roware/dist/</distributionDirectory>
+
+
+	<logo>http://roware.berlios.de/images/roware.jpg</logo>
+	
+	<!-- the project home page -->
+	<url>http://roware.berlios.de/</url>
+	
+	<!-- the version control repository and http url for online access
+		the connection element has the form:
+		scm:<system>:<system specific connection string> -->
+	<repository>
+		<connection>scm:cvs:pserver:anonymous@cvs.roware.berlios.de:/cvsroot/roware:roware</connection>
+		<developerConnection>scm:cvs:ext:${maven.username}@cvs.roware.berlios.de:/cvsroot/roware:roware</developerConnection>
+		<url>http://cvs.berlios.de/cgi-bin/viewcvs.cgi/roware/roware/</url>
+	</repository>
+	
+	<!-- any mailing lists for the project -->
+	<mailingLists/>
+	
+	<versions></versions>
+	<branches></branches>
+	
+	<!-- license informations -->
+	<licenses>
+		<name>GNU GENERAL PUBLIC LICENSE</name>
+		<url>http://www.gnu.org/licenses/gpl.txt</url>
+	</licenses>
+	
+	<!-- who the developers are for the project -->
+	<developers>
+		<developer>
+			<name>Oliver Urschel</name>
+			<id>urschcom</id>
+			<email>urschcom@users.berlios.de</email>
+			<organization/>
+			<roles>
+				<role>Project Manager</role>
+				<role>Database Engineer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Tammo van Lessen</name>
+			<id>vanto</id>
+			<email>vanto@users.berlios.de</email>
+			<organization/>
+			<roles>
+				<role>Project Manager</role>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Demian von Osten</name>
+			<id>demian</id>
+			<email>demian@users.berlios.de</email>
+			<organization/>
+		</developer>
+		<developer>
+			<name>Joachim Praetorius</name>
+			<id>jpraetorius</id>
+			<email>jpraetorius@users.berlios.de</email>
+			<organization/>
+			<roles>
+				<role>Java Developer</role>
+				<role>System Design</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Georg Wassen</name>
+			<id>gewa</id>
+			<email>gewa@users.berlios.de</email>
+			<organization/>
+		</developer>
+		<developer>
+			<name>Gernot A. Weber</name>
+			<id>hawking</id>
+			<email>hawking@users.berlios.de</email>
+			<organization/>
+		</developer>
+		<developer>
+			<name>Ulf Hallmann</name>
+			<id>u1f</id>
+			<email>u1f@users.berlios.de</email>
+			<organization/>
+			<roles>
+				<role>Mentor</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<!-- build information for the project -->
+	<build>
+	<sourceDirectory>${basedir}/src/java</sourceDirectory>
+	<unitTestSourceDirectory>${basedir}/src/test</unitTestSourceDirectory>
+
+	<unitTest>
+		<includes>
+		<include>**/*Test.java</include>
+		</includes>
+		<excludes>
+		<exclude>**/NaughtyTest.java</exclude>
+		</excludes>
+	</unitTest>
+
+	<resources>
+		<resource>
+		<directory>${basedir}/src/conf</directory>
+		<includes>
+			<include>*.properties</include>
+		</includes>
+		</resource>
+	</resources>
+	</build>
+
+	<reports>
+		<report>maven-jdepend-plugin</report>
+		<report>maven-checkstyle-plugin</report>
+		<report>maven-changelog-plugin</report>
+		<report>maven-developer-activity-plugin</report>
+		<report>maven-file-activity-plugin</report>
+		<report>maven-tasklist-plugin</report>
+		<report>maven-javadoc-plugin</report>
+		<report>maven-jxr-plugin</report>
+		<report>maven-pmd-plugin</report>
+		<report>maven-junit-report-plugin</report>
+		<report>maven-statcvs-plugin</report>
+		<!-- <report>maven-linkcheck-plugin</report> -->
+
+	</reports>
+
+</project>
