@@ -64,10 +64,11 @@
 
 \begin{flushleft}
 \normalsize
-Version 0.1\\[2ex]
+Version 0.11\\[2ex]
 \today \\[2ex]
 Oliver Urschel\footnote{Aachen/Bad Kreuznach, \texttt{<urschcom@users.berlios.de>}}\\
 Tammo van Lessen\footnote{Stuttgart/Mainz, \texttt{<vanto@users.berlios.de>}}\\
+Joachim Praetorius\footnote{Berlin, \texttt{<jpraetorius@users.berlios.de>}}\\
 \end{flushleft}
 
 
@@ -114,11 +115,15 @@ abgeschlossen, wenn das Produkt allen hier aufgeführten Aspekten gerecht wird.
 
 \section{Produktziele}
 Bei \roware handelt es sich um ein Programmsystem, das alle Phasen einer 
-Regatta unterstützt. Dazu gehört im Vorfeld der Regatta die Erfassung der eingegangenen Meldungen, die Durchführung der Startverlosung, das Erstellen des Meldeergebnisses. Während der Regatta unterstützt es das Regattabüro, Waage und Kasse.
-Nach der Regatta können automatisch korrigierte Meldeergebnisse erstellt werden.
+Regatta unterstützt. 
+Dazu gehört im Vorfeld der Regatta die Erstellung einer Ausschreibung und der Export dieser Informationen in verschiedene Medien. Des weiteren bietet \roware Unterst"utzung f"ur die Erfassung der eingegangenen Meldungen, die Durchführung der Startverlosung und das Erstellen des Meldeergebnisses. 
+Während der Regatta unterstützt es das Regattabüro, Waage und Kasse bei Bezahlung, Um- und Abmeldungen, Einsprüchen und der Erfassung der Rennergebnisse.
+Nach der Regatta können sowohl automatisch korrigierte Meldeergebnisse, als auch Ergebnisse mit Zeiten und Plazierungen der Teilnehmer erstellt werden.
 
 \section{Produktumgebung}
-Das Programm soll auf beliebigen Plattformen lauffähig sein. Deshalb wird es als Webanwendung in PHP implementiert. Der Benutzer benötig nur einen modernen Browser mit JavaScript-Unterstützung.
+Das Programm soll auf beliebigen Plattformen lauffähig sein. Deshalb wird es als Webanwendung in PHP implementiert. Der Benutzer benötigt nur einen modernen Browser mit JavaScript-Unterstützung.
+
+\textsl{Vielleicht sollten wir hier ein wenig konkreter sein. Javascript kann relativ unlustig sein. Ich denke da an tatscächliches ECMA-262 und W3C-DOM Unterstützung, was den Zugriff auf HTML-Elemente dann einheitlich über \texttt{getElementByName()} ermöglicht}.
 
 \section{Produktfunktionen}
 Das Produkt stellt dem Regattaveranstalter folgende Funktionen zur Verfügung
@@ -143,6 +148,7 @@ Das Produkt stellt dem Regattaveranstalter folgende Funktionen zur Verfügung
 \begin{itemize}
 \item Nachmeldung/Abmeldung/Ummeldung erfassen und damit verbundene Rennverschiebungen verarbeiten
 \item Jugendlizenzen kontrollieren/erfassen
+\item Lizenzliste einlesen / alternativ -> kontrollierte Lizenzen speichern (für weitere Veranstaltungen)
 \item Schiedsrichtereinsatzplan erstellen, veröffentlichen
 \item Waage erfassen
 \item Kasse Buchungen, Quittung erstellen, Berichte erstellen
@@ -174,9 +180,10 @@ Sie beschreiben die Funktionalität des zu erstellenden Systems.
 \subsection{Benutzer}
 Vor der Anmeldung an das System sind haben alle Benutzer die gleiche Funktion und die gleichen Möglichkeiten (\textbf{AKT Benutzer}). Nach der Anmeldung ergibt sich durch das Rechtemanagment eine neue Situation, die Benutzer werden in weitere Gruppen mit unterschiedlichen Rechten aufgeteilt.
 \begin{itemize}
+\item Benutzer bei Regattaverwaltung (Ausschreibung,Erfassung Meldungen, Ergebnisse) (\textbf{AKT Regatta})
 \item Benutzer im Regattabüro (\textbf{AKT Admin})
-\item Benutzer an der Wage (\textbf{AKT Kasse})
-\item Benutzer an der Wage (\textbf{AKT Waage})
+\item Benutzer an der Kasse (\textbf{AKT Kasse})
+\item Benutzer an der Waage (\textbf{AKT Waage})
 \item Benutzer am Start (\textbf{AKT Start})
 \item Benutzer im Ziel (\textbf{AKT Ziel})
 \item Benutzer an der Strecke (\textbf{AKT Zeit})
@@ -199,16 +206,41 @@ Die hier beschriebenen Geschäftsprozesse beschreiben ausschließlich die Interakt
 	{AKT Benutzer}
 
 \subsection {Ausschreibung erstellen}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Benutzer ist als \textbf{AKT Regatta} angemeldet}
+{Der Benutzer kann eine neue Regatta anlegen. Für diese kann er global Daten wie Termin, Austragungsort, Meldeschluß und Preise für die Rennen festlegen. Genauso sind die Kontaktdaten für die Meldung usw. anzugeben. Hierbei können vorhandene Personendaten aus einem Datenspeicher übernommen werden. Noch ungeklärte Daten müssen nicht sofort angegeben werden sondern können zu einem späteren Zeitpunkt ergänzt werden. Zur Identifizierung solcher Daten ist ein bestimmter Wert z.B. ``-'' vorzusehen. Danach kann der Nutzer beliebig viele Rennen anlegen, wobei zur Spezifizierung die folgenden Daten angegeben werden müssen: Bootsklasse, Leistungsklasse, Altersgruppe, Strecke. Ein mehrfaches Anlegen eines Rennens mit den \emph{gleichen} Daten ist nicht möglich. Die Reihenfolge der Rennen ist zu jeder Zeit veränderbar. Die Rennen unter der Stelle, an der ein verschobenes Rennen eingefügt wird, werden nach unten verschoben.
+
+Ein nachträgliches bearbeiten der eingegebenen Daten ist zu jedem Zeitpunkt möglich. Die obigen Plausibilitätskontrollen werden jeweils neu getestet, so daß das System nur konsistente, sinnvolle Daten speichern kann.}
+{Die Veranstaltung wird mit den eingegebenen Daten gespeichert.}
+{Der Nutzer wird auf die Fehler in den eingegebenen Daten hingewiesen. Die Veranstaltung wird \textbf{nicht} gespeichert.}
+{AKT Regatta}
 
 \subsection {Ausschreibung veröffentlichen}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Benutzer ist als \textbf{AKT Regatta} angemeldet. Es existiert eine Ausschreibung ohne inhaltliche Fehler. Alle Veranstalterdaten der Ausschreibung sind ausgefüllt und nicht mit ``-'' gefüllt.}
+{Eine abgeschlossene Ausschreibung kann durch den Nutzer veröffentlicht werden. Hierbei führt das System letzte Plausibilitäskontrollen an den eingegebenen Daten durch. Insbesondere müssen alle Daten die allgemein für die Regatta gelten ausgefüllt worden sein. Dann exportiert das System die relevanten Daten in verschiedene vom Nutzer wählbare Formate. Als Exportformate werden hierbei PDF, HTML und xregatta unterstützt. Diese Daten werden auch auf dem Server gehalten und können durch den Nutzer mittels des Browsers heruntergeladen werden. Eine veröffentlichte Ausschreibung kann nicht mehr verändert werden. Auf diesen Umstand soll der Nutzer vor der Veröffentlichung hingewiesen werden und sie explizit bestätigen müssen. Eine erneute Veröffentlichung in beliebigen der erwähnten Formate ist hingegen jederzeit möglich.}
+{Die Ausschreibung wird in den vom Nutzer gewählten Formaten veröffentlicht (Die Daten werden im passenden Format serialisiert). Eine Änderung der Ausschreibung ist nicht mehr möglich.}
+{Der Nutzer wird auf eventuelle Fehler in der Ausschreibung hingewiesen, die die Veröffentlichung verhindert haben (dazu gehört auch ein Abbruch des Nutzers bei dem Hinweis auf Unveränderbarkeit einer veröffentlichten Ausschreibung). Die Ausschreibung ist weiterhin änderbar, die Ausschreibungsdateien werden nicht erzeugt.}
+{AKT Regatta}
+
+\subsection {Daten aus xregatta Format einlesen}
+\usecase{Der Nutzer ist als AKT Admin angemeldet. Es existiert eine veröffentlichte Ausschreibung. Es liegt eine Meldedatei im xregatta Format vor.}
+{Der Nutzer kann aus einer Auswahl die Regatta auswählen, die er zu bearbeiten wünscht. Hierbei werden nur veröffentlichte Ausschreibungen berücksichtigt. Der Nutzer kann nun auswählen, daß er Meldedaten hinzufügen will. Hierzu existiert die Option ``aus xregatta Format''. Dazu kann der Nutzer über seinen Browser die entsprechende Datei auf den Server uploaden. Dort wird die Datei auf Validität gegenüber der DTD oder dem Schema getestet. Ist sie korrekt werden dem Nutzer die Daten aus der Datei angezeigt. Nun kann er diese per Klick für die Regatta übernehmen (\emph{Vielleicht sollte man auch die Möglichkeit zulassen nur Teile zu übernehmen, also eine Tabellenansicht, in der man einzelne zeilen per Checkbox auswählen kann}).}
+{Die entsprechenden Daten werden für die gewählte Veranstaltung übernommen.}
+{Es werden keine Daten für die entsprechende Veranstaltung übernommen.}
+{AKT Admin}
 
 \subsection {Daten eingeben}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin angemeldet. Es existiert eine veröffentlichte Ausschreibung.}
+{Der Nutzer kann aus einer Auswahl die Regatta auswählen, die er zu bearbeiten wünscht. Hierbei werden nur veröffentlichte Ausschreibungen berücksichtigt. Der Nutzer kann nun auswählen, daß er Meldedaten hinzufügen will. Hierzu existiert die Option ``per Hand''. Nun müssen zuerst die Kontaktinformationen für den meldenden Verein eingegeben werden. Danach können beliebig viele Meldungen zu Rennen eingegeben werden. Hierbei werden die zu Verfügung stehenden Rennen und schon eingegebene Personen zur leichteren Übernahme durch den Nutzer angezeigt. Die Personen sind auf den jeweiligen Verein begrenzt, d.h. es werden nicht alle schon eingegebenen Personen angezeigt. Zum Abschluß bekommt der Nutzer noch einmal die angegebenen Daten angezeigt und kann diese für die Regatta übernehmen.} 
+{Die entsprechenden Daten werden für die gewählte Veranstaltung übernommen.}
+{Es werden keine Daten für die entsprechende Veranstaltung übernommen.}
+{AKT Admin}
 
 \subsection {Daten überprüfen und korrigieren}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin angemeldet. Es existiert eine veröffentlichte Ausschreibung, zu der schon Meldedaten eingegeben worden sind.}
+{Der Nutzer kann aus einer Auswahl die Regatta auswählen, die er zu bearbeiten wünscht. Hierbei werden nur veröffentlichte Ausschreibungen berücksichtigt. Der Nutzer kann nun auswählen, daß er Meldedaten bearbeiten will. Nun kann er sich die schon eingegebenen Daten nach verschiedenen Kriterien sortiert (meldender Verein, Rennen, Jahrgänge) anzeigen lassen. Diese Daten lassen sich nun satzweise ändern oder löschen. Bei Änderungen werden wieder Plausibilitätsprüfungen vorgenommen.}
+{Die geänderten Daten werden übernommen, entfernte Daten werden gelöscht.}
+{Der Nutzer wird auf die Fehler in seiner Änderung hingewiesen, die eingegebenen Daten werden nicht übernommen.}
+{AKT Admin}
 
 \subsection {Rennen verlosen}
 \usecase{}{TODO}{}{}{AKT Admin}
@@ -217,7 +249,11 @@ Die hier beschriebenen Geschäftsprozesse beschreiben ausschließlich die Interakt
 \usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Meldeergebnis veröffentlichen}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin angemeldet. Es existiert eine veröffentlichte Ausschreibung, zu der schon Meldedaten eingegeben worden sind.}
+{Der Nutzer kann aus einer Auswahl die Regatta auswählen, die er zu bearbeiten wünscht. Hierbei werden nur veröffentlichte Ausschreibungen berücksichtigt. Der Nutzer kann nun auswählen, daß er ein Meldeergebnis veröffentlichen will. Dann exportiert das System die relevanten Daten in verschiedene vom Nutzer wählbare Formate. Als Exportformate werden hierbei PDF, HTML und xregatta unterstützt. Diese Daten werden auch auf dem Server gehalten und können durch den Nutzer mittels des Browsers heruntergeladen werden. Eine weitere Veränderung der Veranstaltung ist jederzeit möglich. } 
+{Das Meldeergebnis wird in den gewählten Formaten veröffentlicht.}
+{Es werden keine Dokumente erzeugt.}
+{AKT Admin}
 
 \subsection {Nachmeldung erfassen}
 \usecase{}{TODO}{}{}{AKT Admin}
@@ -241,13 +277,27 @@ Die hier beschriebenen Geschäftsprozesse beschreiben ausschließlich die Interakt
 \usecase{}{TODO}{}{}{AKT Admin}
 
 \subsection {Waage erfassen}
-\usecase{}{TODO}{}{}{AKT Waage, AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin oder AKT Waage angemeldet. Es existieren Meldungen zu LGW Rennen.}
+{Der Nutzer bekommt alle Meldungen zu LGW-Rennen bzw. Steuerleute nach Vereinen getrennt angezeigt. Wählt er eine bestimmte Person aus, werden außerdem die in Frage kommenden Rennen (Renn-Nr., Bezeichnung, Startzeit) angezeigt. Der Nutzer kann nun das bestimmte Gewicht des Aktiven eintragen. Den Check zu den Gewichtsgrenzen führt das System selbständig durch, da hier verschiedenen Grenzen für denselben Aktiven gelten können.}
+{Das Gewicht wird für den jeweiligen Aktiven gespeichert.
+
+\emph{Sollte hier ein Mehrfaches Editieren während eine Veranstaltung erlaubt sein, oder nicht??}}
+{Es werden keine Daten gespeichert.}
+{AKT Waage, AKT Admin}
 
 \subsection {Kassenbuchungen erstellen}
-\usecase{}{TODO}{}{}{AKT Kasse, AKT Admin}
+\usecase{Der Nutzer ist als AKT Kasse oder AKT Admin angemeldet. Es existiert eine veröffentlichte Ausschreibung, zu der schon Meldedaaten eingegeben worden sind.}
+{Der Nutzer bekommt alle meldenden Verein und Renngemeinschaften sowie deren fällige Startgelder angezeigt. Wähhlt er einen bestimmten Verein aus der Liste aus bekommt alle Rennen und deren Kosten im einzelnen angezeigt. Hier kann der Nutzer nun einzelne oder alle Rennen als bezahlt markieren. Die zu leistende Summe des Vereins wird um die entsprechende Summe reduziert. Fällt die Summe des fälligen Startgeldes auf 0.- EUR wird der Verein nicht mehr in der Liste angezeigt. Das System führt auch Nachmeldegelder und Pfand für Einsprüche mit auf, so daß ein Verein, der bereits aus der Liste verwchwunden ist wieder dort auftauchen kann, wenn noch weitere Gelder fällig werden, z.B. durch Nachmeldungen.}
+{Die bezahlten Rennen und Beträge werden für die meldenden Vereine gespeichert.}
+{Es werden keine Daten gespeichert.}
+{AKT Kasse, AKT Admin}
 
 \subsection {Quittung erstellen}
-\usecase{}{TODO}{}{}{AKT Kasse, AKT Admin}
+\usecase{Der Nutzer ist als AKT Kasse oder AKT Admin angemeldet. Es sind schon Buchungen vorgenommen worden.}
+{Der Nutzer bekommt alle Vereine für die schon Buchungen vorgenommen worden sind angezeigt. Wählt er einen bestimmten Verein aus der Liste aus, so bekommt er die bereits bezahlten Rennen angezeigt. Hierbei werden die Rennnr., die Rennbezeichnung, die Anzahl der Meldungen in dem Rennen, die Einzelkosten pro Meldung und die akkumulierten Kosten für dieses Rennen aufgeführt. Des weiteren enthält die Ansicht den Namen der Veranstaltung und des jeweiligen Vereins, sowie eine Gesamtsumme. Diese Ansicht läßt sich über die Druckfunktion des Browsers drucken und dient dann als Quittung.}
+{Die Quittung für den jeweiligen Verein und die bezahlten Rennen wird angezeigt.}
+{Es wird keine Quittung für den Verein angezeigt.}
+{AKT Kasse, AKT Admin}
 
 \subsection {Berichte erstellen}
 \usecase{}{TODO}{}{}{AKT Kasse, AKT Admin}
