@@ -280,10 +280,19 @@ Ein nachträgliches bearbeiten der eingegebenen Daten ist zu jedem Zeitpunkt mögl
 {AKT Admin}
 
 \subsection {Rennen verlosen}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin angemeldet. Es existiert eine Ausschreibung, zu der schon Meldedaten eingegeben worden sind. Der Meldeschluß ist vorbei.}
+{Der Nutzer erhält anschließend eine Übersicht aller Rennen. Per Optionsfeld kann er die zu verlosenden Rennen auswählen. Mit einem Klick beginnt das Szstem die Verlosung der ausgewählten Rennen. Dabei werden mit Hilfe von Zufallszahlen die Mannschaften der gleichen Alters- und Leistungsgruppe durchmischt. Dabei bekommt jede Mannschaft eine Zahl vergeben und nach diesen wird dann sortiert. Stellt das System fest, daß in \emph{einer} Abteilung eines Rennen mit mehreren Abteilungen \emph{nur} Boote \emph{eines} Vereins stehen, zeigt das System eine Warnung an und bietet dem Nutzer die Möglichkeit das Rennen neu zu verlosen \footnote{Alternativ kann das auch automatisch geschehen}.
+Vor der Verlosung überprüft das System die vorliegenden Meldedaten. Existiert für das Rennen oder eine Abteilung nur eine Meldung, oder nur Meldungen eines Vereins, so gilt das Rennen als nicht zustande gekommen. Der Nutzer bekommt dies angezeigt und hat nun die Möglichkeit die Meldungen zu löschen, in ein anderes Rennen zu verschieben oder - falls vorhanden - die Alternativmeldung zu aktivieren. Außerdem kann der Nutzer diesen Umstand akzeptieren und das Rennen trotzdem verlosen lassen. Anschließend vergibt das System über die Aufteilung in Alters- und Leistungsgruppen hinweg aufsteigende Startnummern an die Mannschaften. Unter Berücksichtigung der Alters- und Leistungsgruppen erstellt das System nun eine Unterteilung des Rennens in Abteilungen. Dieses ist insebsomdere für die Rennzeitberechnung unerläßlich. Bei der Verteilung auf Abteilungen orientiert sich das System an dern Bestimmungen der RWR.}
+{Die gewählten Rennen sind verlost worden. Die gemeldeten Mannschaften sind mit Startnummern versehen und in Abteilungen eingeteilt worden. Dabei werden die RWR-Bestimmungen eingehalten, soweit der Nutzer nicht explizit anderes vorgegeben hat. Die verlosten Rennen stehen für die Veröffentlichung des Meldeergebnisses zur Verfügung.}
+{An der Einteilung der Mannschaften hat sich nichts geändert.}
+{AKT Admin}
 
 \subsection {Rennzeiten festlegen}
-\usecase{}{TODO}{}{}{AKT Admin}
+\usecase{Der Nutzer ist als AKT Admin angemeldet. Es existiert eine Ausschreibung, zu der schon eine Rennverlosung stattgefunden hat.}
+	{Sind die Rennen verlost, kann der Nutzer die Rennzeiten festlegen. Hierfür errechnet das System die Startzeiten. Dafür werden die in der Ausschreibung vorhandenen Werte für den Rennabstand genommen. Die Startzeit eines Rennens \emph{n} errechnet sich als $Startzeit_n = Startzeit_{n-1} + (Rennabstand * Anzahl Abteilungen_{Rennen_{n-1}})$. Die Startzeit für das erste Rennen wird ebenfalls der Ausschreibung entnommen. Ist die Startzeitberechnung für die Rennen abgeschlossen erhält der Nutzer eine Übersicht über die Rennen, sortiert nach den Startzeiten. Er hat nun die Möglichkeit Änderungen am Zeitplan vorzunehmen. Dazu kann er: Pausen einfügen, Rennen einfügen, Rennen zusammenlegen oder die Rennen in Ihrer Reihenfolge verschieben. Nach jeder Änderung passt das System die Startzeiten an. Beim Einfügen von Rennen und dem Verschieben von Rennen werden die beteiligten Ruderer überprüft. Wird für einen der Teilnehmer der vorgeschriebene Rennabstand nciht eingehalten, so wird eine Warnung an den Nutzer ausgegeben, der diese Tatsache ignorieren oder die Änderung rückgängig machen kann. Eine Veröffentlichung des Meldeergebnisses darf \emph{auf keinen Fall} vor der endgültigen Festlegung des Zeitplans möglich sein.}
+{Der vom Nutzer akzeptierte Zeitplan wird gespeichert und steht zur Veröffentlichung zur Verfügung.}
+{An der Sortierung der Rennen hat sich nichts geändert.}
+{AKT Admin}
 
 \subsection {Meldeergebnis veröffentlichen}
 \usecase{Der Nutzer ist als AKT Admin angemeldet. Es existiert eine veröffentlichte Ausschreibung, zu der schon Meldedaten eingegeben worden sind.}
