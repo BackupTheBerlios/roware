@@ -21,6 +21,10 @@
  
 package de.berlios.roware.model;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * AbstractPerson
  * Generic Person Object. Base Class for all Persons handled within Roware. 
@@ -31,17 +35,15 @@ package de.berlios.roware.model;
  */
 public abstract class AbstractPerson {
 
-	private String name;
-	private String firstName;
-	private Address address;
+	private String name = null;
+	private String firstName = null;
+	private List address = new ArrayList();
 
 	/**
 	 * Empty constructor for the AbstractPerson
 	 */
 	public AbstractPerson() {
-		name = null;
-		firstName = null;
-		address = null;
+	
 	}
 
 	/**
@@ -50,7 +52,6 @@ public abstract class AbstractPerson {
 	 * @see #setFullName(String)
 	 */
 	public AbstractPerson(String FullName){
-		address = null;
 		setFullName(FullName);
 	}
 	
@@ -61,8 +62,8 @@ public abstract class AbstractPerson {
 	 * @see #setFullName(String)
 	 * @see Address
 	 */
-	public AbstractPerson(String FullName, Address Address){
-		this.address = Address;
+	public AbstractPerson(String FullName, Address address){
+		addAddress(address);
 		setFullName(FullName);
 	}
 	
@@ -83,18 +84,10 @@ public abstract class AbstractPerson {
 	 * @param Address the Address of the Person
 	 * @see Address
 	 */
-	public AbstractPerson(String Name, String FirstName, Address Address){
-		this.address = Address;
-		this.name = Name;
-		this.firstName = FirstName;
-	}
-
-	/**
-	 * @return The Adress of the Person.
-	 * @see Address
-	 */
-	public Address getAdress() {
-		return address;
+	public AbstractPerson(String name, String firstName, Address address){
+		addAddress(address);
+		this.name = name;
+		this.firstName = firstName;
 	}
 
 	/**
@@ -109,14 +102,6 @@ public abstract class AbstractPerson {
 	 */
 	public String getName() {
 		return name;
-	}
-
-	/**
-	 * @param address The Adress of the Person
-	 * @see Address
-	 */
-	public void setAdress(Address address) {
-		this.address = address;
 	}
 
 	/**
@@ -144,6 +129,40 @@ public abstract class AbstractPerson {
 		name = name.substring(split+1,name.length());
 	}
 
+	/**
+	 * Adds an Address to the Person
+	 * @param address The Address to add to this Person
+	 */
+	public void addAddress(Address address) {
+		this.address.add(address);
+	}
 	
+	/**
+	 * Returns all Addresses known for this Person
+	 * @return
+	 */
+	public Object[] getAllAddresses(){
+		return address.toArray();
+	}
+	
+	/**
+	 * Returns all known Addresses of a given Type. These Types are defined in the Class Address
+	 * @param type The Type of Addresses to return. This may be one of the Types defined in de.berlios.roware.model.Address
+	 * @return a List of the Addresses belonging to the given Type, an empty List if no Addresses of the given Type are known
+	 * @see de.berlios.roware.model.Address
+	 * @see java.util.list
+	 */
+	public List getAddressByType(int type){
+		List result = new ArrayList();
+	 	Iterator it = address.iterator();
+		Address a;
+		while(it.hasNext()){
+			a = (Address)it.next();
+			if (a.getType() == type){
+				result.add(a);
+			}
+		}//while
+		return result;
+	}
 
 }
